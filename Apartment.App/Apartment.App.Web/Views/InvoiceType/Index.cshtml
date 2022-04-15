@@ -1,0 +1,47 @@
+﻿@model List<Apartment.App.Web.Models.InvoiceTypeModels.InvoiceTypeViewModel>
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using Apartment.App.Domain.Entities.IdentityEntities
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Fatura Tipi Yönetim Penceresi</h1>
+<form method="post" asp-action="AddInvoiceType" asp-controller="InvoiceType">
+    <div class="input-group">
+        <input name="typeName" class="form-control w-25">
+        <input name="typeUnit" class="form-control w-25">
+        <span class="input-group-btn">
+            @*@if (await UserManager.IsInRoleAsync(new ApplicationUser(), Roles.SuperAdmin.ToString()))
+                {*@
+            <button class="btn btn-info">Fatura tipi ekle</button>
+            @*}*@
+
+        </span>
+    </div>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tip</th>
+            <th>Birim Fiyat</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var type in Model)
+        {
+            <tr>
+                <td>@type.Name</td>
+                <td>@type.TypeUnit</td>
+                <td>
+                    <a class="btn alert-danger">test</a>
+                    <a class="btn alert-info">test2</a>
+                    @*  <a href="@Url.Action("EditInvoiceType", "InvoiceType", new { id = type.Id })">Düzenle</a>
+                    <a href="@Url.Action("DeleteInvoiceType", "InvoiceType", new { id = type.Id })">Sil</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

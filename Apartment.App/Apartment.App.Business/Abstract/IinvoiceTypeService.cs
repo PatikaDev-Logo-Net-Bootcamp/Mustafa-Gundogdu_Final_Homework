@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Apartment.App.Domain.Entities;
 
 namespace Apartment.App.Business.Abstract
@@ -11,7 +12,7 @@ namespace Apartment.App.Business.Abstract
         InvoiceType GetInvoiceTypeById(int invoiceTypeId);
         string InvoiceTypeName(InvoiceType invoiceType);
         string InvoiceTypeUnit(InvoiceType invoiceType);
-        void Add(InvoiceType invoiceType);
+        void Add(string invoiceTypeName, string invoiceTypeUnit);
         void Update(InvoiceType invoiceType);
         void Delete(InvoiceType invoiceType);
     }

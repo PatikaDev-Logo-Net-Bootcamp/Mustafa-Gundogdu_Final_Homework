@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Apartment.App.Domain.Entities.IdentityEntities;
 using Microsoft.AspNetCore.Identity;
@@ -40,11 +37,6 @@ namespace Apartment.App.DataAccess.EntityFramework
                 }
             }
         }
-
-        //We're create automaticly base invoice types if admin want to create new invoice type yes it can be manage in main page
-        //public static async Task SeedInvoiceTypeAsync()
-        //{
-        //}
 
     }
 }

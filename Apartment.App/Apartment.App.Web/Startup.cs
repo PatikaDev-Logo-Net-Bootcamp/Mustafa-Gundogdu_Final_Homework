@@ -41,12 +41,12 @@ namespace Apartment.App.Web
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             
-            services.AddTransient<IHousingService, HousingService>();
-            services.AddTransient<IinvoiceService, InvoiceService>();
-            services.AddTransient<IinvoiceTypeService, InvoiceTypeService>();
+            services.AddScoped<IHousingService, HousingService>();
+            services.AddScoped<IinvoiceService, InvoiceService>();
+            services.AddScoped<IinvoiceTypeService, InvoiceTypeService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

@@ -8,7 +8,7 @@ namespace Apartment.App.Domain.Entities
     public class InvoiceType:BaseEntity
     {
         public string TypeName { get; set; }
-        public string InvoiceTypeUnit { get; set; }
+        public string TypeUnit { get; set; }
 
     }
 }

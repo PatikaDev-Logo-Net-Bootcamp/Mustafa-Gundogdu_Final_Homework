@@ -8,5 +8,21 @@ namespace Apartment.App.Web.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult AddHousing()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UpdateHousing()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult DeleteHousing()
+        {
+            return View();
+        }
     }
 }

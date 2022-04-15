@@ -2,7 +2,7 @@
 
 namespace Apartment.App.Web.Controllers
 {
-    public class AdminController : Controller
+    public class MessageController : Controller
     {
         public IActionResult Index()
         {

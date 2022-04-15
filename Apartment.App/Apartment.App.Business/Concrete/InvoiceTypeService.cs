@@ -32,11 +32,16 @@ namespace Apartment.App.Business.Concrete
 
         public string InvoiceTypeUnit(InvoiceType invoiceType)
         {
-            return repository.Get().Where(i => i.Id == invoiceType.Id).FirstOrDefault().InvoiceTypeUnit;
+            return repository.Get().Where(i => i.Id == invoiceType.Id).FirstOrDefault().TypeUnit;
         }
 
-        public void Add(InvoiceType invoiceType)
+        public void Add(string invoiceTypeName, string invoiceTypeUnit)
         {
+            var invoiceType = new InvoiceType
+            {
+                TypeName = invoiceTypeName,
+                TypeUnit = invoiceTypeUnit
+            };
             repository.Add(invoiceType);
             unitOfWork.Commit();
         }

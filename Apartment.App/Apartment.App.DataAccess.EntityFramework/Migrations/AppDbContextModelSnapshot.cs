@@ -219,10 +219,6 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("InvoiceTypeUnit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -233,6 +229,10 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeUnit")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -14,7 +14,7 @@ namespace Apartment.App.DataAccess.EntityFramework.Configurations
             builder.ToTable("InvoiceTypes");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.TypeName).IsRequired();
-            builder.Property(x => x.InvoiceTypeUnit).IsRequired();
+            builder.Property(x => x.TypeUnit).IsRequired();
         }
     }
 }
