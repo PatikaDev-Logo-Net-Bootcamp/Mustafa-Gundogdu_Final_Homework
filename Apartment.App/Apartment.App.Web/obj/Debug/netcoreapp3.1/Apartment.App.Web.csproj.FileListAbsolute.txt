@@ -423,3 +423,4 @@ C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartm
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Apartment.App.Web.csproj.CopyComplete
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Apartment.App.Web.genruntimeconfig.cache
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Partials\_LoginPartial.cshtml.g.cs
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\InvoiceType\Add.cshtml.g.cs

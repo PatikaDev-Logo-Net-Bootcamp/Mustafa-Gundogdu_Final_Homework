@@ -25,14 +25,10 @@ namespace Apartment.App.Web.Controllers
         public IActionResult Index()
         {
             var types = invoiceTypeService.getAllInvoiceTypes();
-            var model = new InvoiceTypeViewModel()
-            {
-                invoiceTypes = new List<InvoiceTypeModel>(),
-                addInvoiceType = new InvoiceTypeModel()
-            };
+            var model = new List<InvoiceTypeViewModel>();
             foreach (var item in types)
             {
-                model.invoiceTypes.Add(new InvoiceTypeModel
+                model.Add(new InvoiceTypeViewModel
                 {
                     Id = item.Id,
                     typeName = item.TypeName, 
@@ -41,9 +37,15 @@ namespace Apartment.App.Web.Controllers
             }
             return View(model);
         }
-        
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        } 
+
         [HttpPost]
-        public IActionResult AddInvoiceType(InvoiceTypeModel model)
+        public IActionResult Add(InvoiceTypeViewModel model)
         {
             
             if (!ModelState.IsValid)

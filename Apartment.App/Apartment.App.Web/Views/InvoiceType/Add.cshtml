@@ -1,0 +1,28 @@
+﻿ 
+@model Apartment.App.Web.Models.InvoiceTypeModels.InvoiceTypeViewModel
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using Apartment.App.Domain.Entities.IdentityEntities
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@inject RoleManager<IdentityRole> RoleManager
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Fatura Tipi Ekleme Penceresi</h1>
+<form id="myform" method="post">
+    <div class="form-group">
+        <label asp-for="typeName"></label>
+        <input asp-for="typeName" class="form-control"/>
+        <span asp-validation-for="typeName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="typeName"></label>
+        <input asp-for="typeUnit" class="form-control"/>
+        <span asp-validation-for="typeUnit" class="text-danger"></span>
+    </div>
+    <input type="submit" value="submit" />
+</form>
+
+
