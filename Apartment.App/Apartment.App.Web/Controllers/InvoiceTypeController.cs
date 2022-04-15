@@ -24,23 +24,26 @@ namespace Apartment.App.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-
             var types = invoiceTypeService.getAllInvoiceTypes();
-            var model = new List<InvoiceTypeViewModel>();
+            var model = new InvoiceTypeViewModel()
+            {
+                invoiceTypes = new List<InvoiceTypeModel>(),
+                addInvoiceType = new InvoiceTypeModel()
+            };
             foreach (var item in types)
             {
-                model.Add(new InvoiceTypeViewModel
+                model.invoiceTypes.Add(new InvoiceTypeModel
                 {
                     Id = item.Id,
-                    Name = item.TypeName, 
-                    TypeUnit= item.TypeUnit
+                    typeName = item.TypeName, 
+                    typeUnit= item.TypeUnit
                 });
             }
             return View(model);
         }
         
         [HttpPost]
-        public IActionResult AddInvoiceType(InvoiceTypeAddModel model)
+        public IActionResult AddInvoiceType(InvoiceTypeModel model)
         {
             
             if (!ModelState.IsValid)

@@ -17,14 +17,16 @@ namespace Apartment.App.DataAccessEntityFramework.Repository.Concrete
         {
             entity.IsDeleted = false;
             entity.CreatedAt=DateTime.Now;
+            entity.LastUpdatedAt = DateTime.Now;
             unitOfWork.Context.Set<T>().Add(entity);
         }
-
+        
         public void Delete(T entity)
         {
             T exist = unitOfWork.Context.Set<T>().Find(entity.Id);
             if (exist != null)
             {
+                exist.LastUpdatedAt = DateTime.Now;
                 exist.IsDeleted = true;
                 unitOfWork.Context.Entry(entity).State = EntityState.Modified;
             }
