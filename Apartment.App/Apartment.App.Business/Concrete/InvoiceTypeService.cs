@@ -25,6 +25,11 @@ namespace Apartment.App.Business.Concrete
             return repository.Get().Where(i => i.Id == invoiceTypeId).FirstOrDefault();
         }
 
+        public bool InvoiceTypeIsThere(string invoiceTypeName)
+        {
+            return repository.Get().Where(i => i.TypeName == invoiceTypeName).FirstOrDefault() != null ? true : false;
+        }
+
         public string InvoiceTypeName(InvoiceType invoiceType)
         {
             return repository.Get().Where(i => i.Id == invoiceType.Id).FirstOrDefault().TypeName;

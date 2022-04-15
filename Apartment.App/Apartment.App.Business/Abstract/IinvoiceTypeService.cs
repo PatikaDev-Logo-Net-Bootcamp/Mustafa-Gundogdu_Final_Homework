@@ -10,6 +10,7 @@ namespace Apartment.App.Business.Abstract
     {
         List<InvoiceType> getAllInvoiceTypes();
         InvoiceType GetInvoiceTypeById(int invoiceTypeId);
+        bool InvoiceTypeIsThere(string invoiceTypeName);
         string InvoiceTypeName(InvoiceType invoiceType);
         string InvoiceTypeUnit(InvoiceType invoiceType);
         void Add(string invoiceTypeName, string invoiceTypeUnit);

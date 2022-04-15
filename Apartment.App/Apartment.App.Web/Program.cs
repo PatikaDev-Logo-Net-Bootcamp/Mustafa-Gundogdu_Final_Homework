@@ -6,8 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Apartment.App.Business.Abstract;
+using Apartment.App.Business.Concrete;
 using Apartment.App.DataAccess.EntityFramework;
 using Apartment.App.Domain.Entities.IdentityEntities;
+using Apartment.App.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,6 +32,7 @@ namespace Apartment.App.Web
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await ContextSeed.SeedRoleAsync(userManager, roleManager);
                     await ContextSeed.SeedSuperAdminAsync(userManager, roleManager);
+                    ContextSeed.SeedInvoiceTypeAsync(services.GetRequiredService<IinvoiceTypeService>());
                 }
                 catch (Exception ex)
                 {

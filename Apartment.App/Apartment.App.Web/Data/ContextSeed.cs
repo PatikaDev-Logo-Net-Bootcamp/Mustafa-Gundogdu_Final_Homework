@@ -1,8 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Apartment.App.Business.Abstract;
+using Apartment.App.Business.Concrete;
+using Apartment.App.Domain.Entities;
 using Apartment.App.Domain.Entities.IdentityEntities;
 using Microsoft.AspNetCore.Identity;
-namespace Apartment.App.DataAccess.EntityFramework
+namespace Apartment.App.Web.Data
 {
     public class ContextSeed
     {
@@ -38,5 +42,22 @@ namespace Apartment.App.DataAccess.EntityFramework
             }
         }
 
+        public static void  SeedInvoiceTypeAsync(IinvoiceTypeService invoiceTypeService)
+        {
+            var types = new List<InvoiceType>
+            {
+                new InvoiceType {TypeName = "Aidat", TypeUnit = "Gün"},
+                new InvoiceType {TypeName = "Elektrik", TypeUnit = "KwH"},
+                new InvoiceType {TypeName = "Su", TypeUnit = "m³"},
+                new InvoiceType {TypeName = "Doğalgaz", TypeUnit = "m³"}
+            };
+            foreach (var type in types)
+            {
+                if (!invoiceTypeService.InvoiceTypeIsThere(type.TypeName))
+                {
+                    invoiceTypeService.Add(type.TypeName,type.TypeUnit);
+                }
+            }   
+        }
     }
 }
