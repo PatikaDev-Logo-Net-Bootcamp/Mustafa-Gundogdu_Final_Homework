@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Apartment.App.Business.Abstract;
 using Apartment.App.Business.Concrete;
+using Apartment.App.Business.DTO;
 using Apartment.App.Domain.Entities;
 using Apartment.App.Web.Models;
 using Apartment.App.Web.Models.InvoiceTypeModels;
@@ -15,45 +16,58 @@ namespace Apartment.App.Web.Controllers
     public class InvoiceTypeController : Controller
     {
         private readonly IinvoiceTypeService invoiceTypeService;
-
         public InvoiceTypeController(IinvoiceTypeService invoiceTypeService)
         {
             this.invoiceTypeService = invoiceTypeService;
         }
-
         [HttpGet]
         public IActionResult Index()
         {
             var types = invoiceTypeService.getAllInvoiceTypes();
-            var model = new List<InvoiceTypeViewModel>();
+            var model = new InvoiceTypeViewModel
+            {
+                InvoiceTypes = new List<InvoiceTypeDto>()
+            };
             foreach (var item in types)
             {
-                model.Add(new InvoiceTypeViewModel
+                model.InvoiceTypes.Add(new InvoiceTypeDto()
                 {
-                    Id = item.Id,
-                    typeName = item.TypeName, 
-                    typeUnit= item.TypeUnit
+                    Id=item.Id,
+                    Name = item.TypeName,
+                    Unit = item.TypeUnit
                 });
             }
             return View(model);
         }
-
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Manage( int id )
         {
-            return View();
-        } 
-
-        [HttpPost]
-        public IActionResult Add(InvoiceTypeViewModel model)
-        {
-            
-            if (!ModelState.IsValid)
+            var model = new InvoiceTypeManageModel();
+            if ( id != 0 )
             {
-                RedirectToAction("Index");
+                var type = invoiceTypeService.GetInvoiceTypeById(id);
+                model.Id = type.Id;
+                model.Name = type.TypeName;
+                model.Unit = type.TypeUnit;
             }
-            invoiceTypeService.Add(model.typeName,model.typeUnit);
-            return RedirectToAction("Index");
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Manage(InvoiceTypeManageModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Id == 0) 
+                {
+                    invoiceTypeService.Add(model.Name, model.Unit);
+                }
+                else
+                {
+                    invoiceTypeService.Update(model.Id, model.Name, model.Unit);
+                }
+                return  RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

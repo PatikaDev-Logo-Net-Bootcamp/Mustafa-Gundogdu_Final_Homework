@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Apartment.App.Domain.NewFolder;
+using Apartment.App.Domain.Entities;
 
 namespace Apartment.App.Domain.Entities
 {

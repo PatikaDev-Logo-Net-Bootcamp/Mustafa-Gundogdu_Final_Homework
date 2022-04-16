@@ -37,7 +37,7 @@ namespace Apartment.App.Business.Concrete
 
         public Housing GetHousingByUser(User user)
         {
-            return repository.Get().Where(h => h.user.Id == user.Id).First();
+            return repository.Get().Where(h => h.User.Id == user.Id).First();
         }
 
         public void Add(Housing housing)

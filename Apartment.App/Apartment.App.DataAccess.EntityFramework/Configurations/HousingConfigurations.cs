@@ -17,7 +17,7 @@ namespace Apartment.App.DataAccess.EntityFramework.Configurations
             builder.Property(x => x.IsHomeowner).IsRequired();
             builder.Property(x => x.ApartmentNumber).IsRequired();
             builder.Property(x => x.ApartmentSizeInfo).IsRequired();
-            builder.Property(x => x.BlokNumber).IsRequired();
+            builder.Property(x => x.BlockNumber).IsRequired();
             builder.Property(x => x.FloorNumber).IsRequired();
         }
     }

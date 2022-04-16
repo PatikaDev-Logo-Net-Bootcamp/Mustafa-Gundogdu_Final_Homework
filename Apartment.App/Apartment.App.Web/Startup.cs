@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Apartment.App.Business.Abstract;
 using Apartment.App.Business.Concrete;
@@ -41,6 +42,8 @@ namespace Apartment.App.Web
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             

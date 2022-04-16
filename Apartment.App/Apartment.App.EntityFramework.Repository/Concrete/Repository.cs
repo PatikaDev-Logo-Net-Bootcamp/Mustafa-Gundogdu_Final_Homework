@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Apartment.App.DataAccessEntityFramework.Repository.Abstract;
-using Apartment.App.Domain.NewFolder;
+using Apartment.App.Domain.Entities; 
 using Microsoft.EntityFrameworkCore;
 
 namespace Apartment.App.DataAccessEntityFramework.Repository.Concrete

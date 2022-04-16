@@ -33,7 +33,7 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BlokNumber")
+                    b.Property<int>("BlockNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -60,12 +60,12 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                     b.Property<string>("LastUpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("userId")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Housings");
                 });
@@ -77,6 +77,9 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("CarPlateNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -91,6 +94,9 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasCar")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -161,6 +167,9 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("HousingId")
+                        .HasColumnType("int");
+
                     b.Property<int>("InvoiceAmountOfUse")
                         .HasColumnType("int");
 
@@ -189,19 +198,16 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                     b.Property<int>("TotalDay")
                         .HasColumnType("int");
 
-                    b.Property<int?>("housingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("userId")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HousingId");
+
                     b.HasIndex("InvoiceTypeId");
 
-                    b.HasIndex("housingId");
-
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Invoices");
                 });
@@ -374,24 +380,24 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
 
             modelBuilder.Entity("Apartment.App.Domain.Entities.Housing", b =>
                 {
-                    b.HasOne("Apartment.App.Domain.Entities.IdentityEntities.User", "user")
+                    b.HasOne("Apartment.App.Domain.Entities.IdentityEntities.User", "User")
                         .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Apartment.App.Domain.Entities.Invoice", b =>
                 {
+                    b.HasOne("Apartment.App.Domain.Entities.Housing", "Housing")
+                        .WithMany()
+                        .HasForeignKey("HousingId");
+
                     b.HasOne("Apartment.App.Domain.Entities.InvoiceType", "InvoiceType")
                         .WithMany()
                         .HasForeignKey("InvoiceTypeId");
 
-                    b.HasOne("Apartment.App.Domain.Entities.Housing", "housing")
+                    b.HasOne("Apartment.App.Domain.Entities.IdentityEntities.User", "User")
                         .WithMany()
-                        .HasForeignKey("housingId");
-
-                    b.HasOne("Apartment.App.Domain.Entities.IdentityEntities.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

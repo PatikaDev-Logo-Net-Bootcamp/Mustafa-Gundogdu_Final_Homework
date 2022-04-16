@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Apartment.App.Domain.NewFolder
+namespace Apartment.App.Domain.Entities
 {
     public class BaseEntity
     {

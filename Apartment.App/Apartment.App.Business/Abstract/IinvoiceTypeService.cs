@@ -14,7 +14,7 @@ namespace Apartment.App.Business.Abstract
         string InvoiceTypeName(InvoiceType invoiceType);
         string InvoiceTypeUnit(InvoiceType invoiceType);
         void Add(string invoiceTypeName, string invoiceTypeUnit);
-        void Update(InvoiceType invoiceType);
+        void Update(int id,string invoiceTypeName, string invoiceTypeUnit);
         void Delete(InvoiceType invoiceType);
     }
 }

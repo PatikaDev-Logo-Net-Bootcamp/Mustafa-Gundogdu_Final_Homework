@@ -1,7 +1,7 @@
 ﻿ 
 using System.Linq;
 using System.Text;
-using Apartment.App.Domain.NewFolder;
+using Apartment.App.Domain.Entities;
 
 namespace Apartment.App.DataAccessEntityFramework.Repository.Abstract
 {

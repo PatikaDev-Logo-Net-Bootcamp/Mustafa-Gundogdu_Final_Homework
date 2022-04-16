@@ -51,8 +51,14 @@ namespace Apartment.App.Business.Concrete
             unitOfWork.Commit();
         }
 
-        public void Update(InvoiceType invoiceType)
+        public void Update(int id,string invoiceTypeName, string invoiceTypeUnit)
         {
+            var invoiceType = new InvoiceType
+            {
+                Id = id,
+                TypeName = invoiceTypeName,
+                TypeUnit = invoiceTypeUnit
+            };
             repository.Update(invoiceType);
             unitOfWork.Commit();
         }

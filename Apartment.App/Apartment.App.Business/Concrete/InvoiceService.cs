@@ -35,12 +35,12 @@ namespace Apartment.App.Business.Concrete
 
         public List<Invoice> GetAllUserInvoices(User user)
         {
-            return repository.Get().Where(i=>i.user==user).ToList();
+            return repository.Get().Where(i=>i.User==user).ToList();
         }
 
         public List<Invoice> GetAllHousingInvoices(Housing housing)
         {
-            return repository.Get().Where(i=>i.housing==housing).ToList();
+            return repository.Get().Where(i=>i.Housing==housing).ToList();
         }
         public Invoice GetInvoiceById(int invoiceId)
         {

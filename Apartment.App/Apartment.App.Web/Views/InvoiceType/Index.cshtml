@@ -1,4 +1,4 @@
-﻿@model List<Apartment.App.Web.Models.InvoiceTypeModels.InvoiceTypeViewModel>
+﻿@model Apartment.App.Web.Models.InvoiceTypeModels.InvoiceTypeViewModel
 @using Microsoft.AspNetCore.Identity
 @using System.Security.Claims
 @using Apartment.App.Domain.Entities.IdentityEntities
@@ -18,21 +18,17 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var type in Model)
+    @foreach (var type in Model.InvoiceTypes)
     {
         <tr>
-            <td>@type.typeName</td>
-            <td>@type.typeUnit</td>
+            <td>@type.Name</td>
+            <td>@type.Unit</td>
             <td>
-                <a class="btn alert-danger">test</a>
-                <a class="btn alert-info">test2</a>
-                @*  <a href="@Url.Action("EditInvoiceType", "InvoiceType", new { id = type.Id })">Düzenle</a>
-                    <a href="@Url.Action("DeleteInvoiceType", "InvoiceType", new { id = type.Id })">Sil</a>*@
+                <a class="btn btn-primary" href="@Url.Action("Manage", "InvoiceType",new{id=@type.Id})">Güncelle</a>
             </td>
         </tr>
     }
     </tbody>
 </table>
  
-<a class="btn btn-primary" href="@Url.Action("Add", "InvoiceType")">Yeni Fatura Tipi Ekle</a>
- 
+<a class="btn btn-primary" href="@Url.Action("Manage", "InvoiceType")">Yeni Fatura Tipi Ekle</a>

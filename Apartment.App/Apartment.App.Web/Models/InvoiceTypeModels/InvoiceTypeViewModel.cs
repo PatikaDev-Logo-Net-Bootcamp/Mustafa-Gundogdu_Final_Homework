@@ -1,9 +1,11 @@
-﻿namespace Apartment.App.Web.Models.InvoiceTypeModels
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Apartment.App.Business.DTO;
+
+namespace Apartment.App.Web.Models.InvoiceTypeModels
 {
     public class InvoiceTypeViewModel
     {
-        public int Id { get; set; }
-        public string typeName { get; set; }
-        public string typeUnit { get; set; }
+     public  List<InvoiceTypeDto> InvoiceTypes { get; set; }
     }
 }
