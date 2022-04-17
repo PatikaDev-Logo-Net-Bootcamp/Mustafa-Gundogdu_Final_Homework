@@ -30,6 +30,8 @@ namespace Apartment.App.Web.Controllers
             this.invoiceService = invoiceService;
             currentUser = userManager.FindByNameAsync(signInManager.Context.User.Identity.Name).Result;
         }
+
+        // overload edip ev id sine göre de faturaları getirebiliriz.
         public IActionResult Index()
         {
             if (currentUser!=null)
@@ -100,7 +102,7 @@ namespace Apartment.App.Web.Controllers
 
         #region Metotlar
 
-        private Roles getCurrentUserRole()
+        public Roles getCurrentUserRole()
         {
             IList<string> roles = userManager.GetRolesAsync(currentUser).Result;
             if (roles.Contains(Roles.Admin.ToString()))

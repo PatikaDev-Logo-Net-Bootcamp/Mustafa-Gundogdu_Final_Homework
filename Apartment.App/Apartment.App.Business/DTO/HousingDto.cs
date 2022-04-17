@@ -6,6 +6,7 @@ namespace Apartment.App.Business.DTO
 {
     public class HousingDto
     {
+        public int Id { get; set; }
         public UserDto User { get; set; }
         public List<InvoiceDto> Invoices { get; set; }
         public bool IsEmpty { get; set; }

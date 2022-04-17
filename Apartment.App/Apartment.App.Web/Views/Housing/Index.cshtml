@@ -1,0 +1,70 @@
+﻿@model Apartment.App.Web.Models.HousingViewModels.HousingViewModel
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using Apartment.App.Domain.Entities.IdentityEntities
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Ev Yönetim Penceresi</h1>
+ 
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Ev Durumu</th>
+        <th>Blok</th>
+        <th>Kat</th>
+        <th>No</th>
+        <th>Tip</th>
+        <th>İşlemler</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var housing in Model.HousingList)
+    {
+        <tr>
+            <td>
+                @if (housing.IsEmpty)
+                {
+                    <b>BOŞ</b>
+                }
+                else
+                {
+                    <b>DOLU </b>
+                    <b>
+                        @if (housing.IsHomeowner)
+                        {
+                            <b>EV SAHİBİ</b>
+                        }
+                        else
+                        {
+                            <b>KİRACI</b>
+                        }
+                    </b>
+                }
+            </td>
+            <td>@housing.BlokNumber</td>
+            <td>@housing.FloorNumber</td>
+            <td>@housing.ApartmentNumber</td>
+            <td>@housing.ApartmentSizeInfo</td>
+            <td>
+                    @if (Model.isUserAdmin)
+                    {
+                        <a class="btn btn-primary" href="@Url.Action("Update", "Housing",@housing.Id)">Yeni Fatura Tipi Ekle</a>
+                    }
+                    else 
+                    {
+                        <a class="btn btn-primary" href="@Url.Action("Index", "Invoice")">Faturalarıma Git</a>
+                    }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+  
+@if (Model.isUserAdmin)
+{
+    <a class="btn btn-info" href="@Url.Action("Add", "Invoice")">Yeni Ev Ekle</a>
+}

@@ -19,6 +19,8 @@ namespace Apartment.App.DataAccess.EntityFramework
         public DbSet<Housing> Housings { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceType> InvoiceTypes { get; set; }
+        public DbSet<Floor> Floors { get; set; }
+        public DbSet<Block> Blocks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -28,6 +30,8 @@ namespace Apartment.App.DataAccess.EntityFramework
             builder.ApplyConfiguration(new HousingConfigurations());
             builder.ApplyConfiguration(new InvoiceConfigurations());
             builder.ApplyConfiguration(new InvoiceTypeConfigurations());
+            builder.ApplyConfiguration(new BlockConfigurations());
+            builder.ApplyConfiguration(new FloorConfigurations());
 
             builder.Entity<User>(entity =>
             {

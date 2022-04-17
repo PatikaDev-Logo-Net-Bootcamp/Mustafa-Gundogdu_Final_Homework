@@ -5,11 +5,8 @@ namespace Apartment.App.Web.Models.UserViewModels
 {
     public class UserViewModel
     {
-        public UserViewModel()
-        {
-            Users = new List<UserDto>();
-        }
-        public List<UserDto> Users { get ; set; }
+
+        public List<UserDto> Users { get; set; } = new List<UserDto>();
 
     }
 }

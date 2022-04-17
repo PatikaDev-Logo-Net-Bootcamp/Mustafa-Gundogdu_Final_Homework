@@ -4,6 +4,6 @@ namespace Apartment.App.Web.Models.UserViewModels
 {
     public class UserUpdateViewModel
     {
-        public UserDto user { get; set; }
+        public UserDto user { get; set; } = new UserDto();
     }
 }

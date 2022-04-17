@@ -5,8 +5,8 @@ namespace Apartment.App.Web.Models.InvoiceModels
 {
     public class InvoiceModel
     {
-        public InvoiceTypeDto invoiceType { get; set; }
-        
+        public InvoiceTypeDto invoiceType { get; set; } = new InvoiceTypeDto();
+
         public int housingId { get; set; }
         public string InvoiceOwnerTrIdentity { get; set; }
         public string InvoiceOwnerName { get; set; }

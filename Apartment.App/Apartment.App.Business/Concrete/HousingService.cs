@@ -35,10 +35,11 @@ namespace Apartment.App.Business.Concrete
             return repository.Get().Where(h => h.Id == housingId).First();
         }
 
-        public Housing GetHousingByUser(User user)
+        public List<Housing> GetHousingsByUserId(string userId)
         {
-            return repository.Get().Where(h => h.User.Id == user.Id).First();
+            return repository.Get().Where(h => h.User.Id == userId).ToList();
         }
+        
 
         public void Add(Housing housing)
         {

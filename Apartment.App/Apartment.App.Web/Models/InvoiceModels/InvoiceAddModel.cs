@@ -5,8 +5,8 @@ namespace Apartment.App.Web.Models.InvoiceModels
 {
     public class InvoiceAddModel
     {
-        public List<HousingDto> Housings { get; set; } 
-        public List<InvoiceTypeDto> invocieTypes { get; set; }
+        public List<HousingDto> Housings { get; set; } = new List<HousingDto>();
+        public List<InvoiceTypeDto> invocieTypes { get; set; } = new List<InvoiceTypeDto>();
         public int housingId { get; set; }
         public string InvoiceOwnerTrIdentity { get; set; } 
         public int InvoiceTypeId { get; set; }

@@ -6,6 +6,6 @@ namespace Apartment.App.Web.Models.InvoiceTypeModels
 {
     public class InvoiceTypeViewModel
     {
-     public  List<InvoiceTypeDto> InvoiceTypes { get; set; }
+        public List<InvoiceTypeDto> InvoiceTypes { get; set; } = new List<InvoiceTypeDto>();
     }
 }

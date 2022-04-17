@@ -6,11 +6,8 @@ namespace Apartment.App.Web.Models.InvoiceModels
 {
     public class InvoiceViewModel
     {
-        public InvoiceViewModel()
-        {
-            Invoices = new List<InvoiceModel>();
-        }
-        public List<InvoiceModel> Invoices { get; set; }
+
+        public List<InvoiceModel> Invoices { get; set; } = new List<InvoiceModel>();
         public bool isUserAdmin { get; set; }
     }
 }
