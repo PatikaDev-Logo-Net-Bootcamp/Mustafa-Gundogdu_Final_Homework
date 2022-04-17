@@ -14,6 +14,7 @@ namespace Apartment.App.DataAccess.EntityFramework.Configurations
             builder.ToTable("Floors");
             builder.HasKey(x => x.Id); 
             builder.Property(x => x.Block).IsRequired();
+            builder.Property(x => x.FloorNumber).IsRequired();
         }
     }
 }

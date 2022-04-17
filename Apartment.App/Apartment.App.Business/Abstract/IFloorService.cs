@@ -10,7 +10,6 @@ namespace Apartment.App.Business.Abstract
         List<Floor> GetAll();
         List<Floor> GetAllByBlockId(int blockId);
         Floor GetById(int id);
-        
         void Add(Floor entity);
         void Update(Floor entity);
         void Delete(Floor entity);

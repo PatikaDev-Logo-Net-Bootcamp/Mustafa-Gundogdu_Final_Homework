@@ -7,6 +7,7 @@ using Apartment.App.Business.DTO;
 using Apartment.App.Domain.Entities;
 using Apartment.App.Web.Models;
 using Apartment.App.Web.Models.InvoiceTypeModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +19,13 @@ namespace Apartment.App.Web.Controllers
     public class InvoiceTypeController : Controller
     {
         private readonly IinvoiceTypeService invoiceTypeService;
-        public InvoiceTypeController(IinvoiceTypeService invoiceTypeService)
+        private readonly IMapper mapper;
+        public InvoiceTypeController(IinvoiceTypeService invoiceTypeService, IMapper mapper)
         {
             this.invoiceTypeService = invoiceTypeService;
+            this.mapper = mapper;
         }
+       
         [HttpGet]
         public IActionResult Index()
         {

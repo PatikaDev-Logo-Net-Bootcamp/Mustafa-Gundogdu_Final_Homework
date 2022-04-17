@@ -8,6 +8,7 @@ using Apartment.App.Domain.Entities.IdentityEntities;
 using Apartment.App.Web.Enums;
 using Apartment.App.Web.Models;
 using Apartment.App.Web.Models.InvoiceModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,13 +22,15 @@ namespace Apartment.App.Web.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly SignInManager<User> signInManager;
         private readonly IinvoiceService invoiceService;
+        private readonly IMapper mapper;
         private User currentUser = null;
-        public InvoiceController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager,IinvoiceService invoiceService)
+        public InvoiceController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager,IinvoiceService invoiceService,IMapper mapper)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
             this.invoiceService = invoiceService;
+            this.mapper = mapper;
             currentUser = userManager.FindByNameAsync(signInManager.Context.User.Identity.Name).Result;
         }
 

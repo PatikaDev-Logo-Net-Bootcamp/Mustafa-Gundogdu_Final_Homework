@@ -5,6 +5,7 @@ using Apartment.App.Domain.Entities;
 using Apartment.App.Domain.Entities.IdentityEntities;
 using Apartment.App.Web.Enums;
 using Apartment.App.Web.Models.HousingViewModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,13 +18,15 @@ namespace Apartment.App.Web.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly SignInManager<User> signInManager;
         private readonly IHousingService housingService;
+        private readonly IMapper mapper;
         private User currentUser = null;
-        public HousingController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IHousingService housingService )
+        public HousingController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IHousingService housingService ,IMapper mapper)
         {
             this.userManager = userManager;
             this.housingService = housingService;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
+            this.mapper = mapper;
             currentUser = userManager.FindByNameAsync(signInManager.Context.User.Identity.Name).Result;
         }
         

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Apartment.App.Business.DTO;
 using Apartment.App.Domain.Entities.IdentityEntities;
 using Apartment.App.Web.Models.UserViewModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,13 @@ namespace Apartment.App.Web.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private IMapper mapper;
 
-        public UserController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public UserController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager,IMapper mapper)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
+            this.mapper = mapper;
         }
 
         public IActionResult Index()

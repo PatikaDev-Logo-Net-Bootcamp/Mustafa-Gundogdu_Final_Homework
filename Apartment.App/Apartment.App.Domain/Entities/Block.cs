@@ -6,6 +6,7 @@ namespace Apartment.App.Domain.Entities
 {
     public class Block:BaseEntity
     {
+        public int BlockNumber { get; set; }
         public string Name { get; set; }
     }
 }
