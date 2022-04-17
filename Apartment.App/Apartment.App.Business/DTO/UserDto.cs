@@ -13,5 +13,7 @@ namespace Apartment.App.Business.DTO
         public string PhoneNumber { get; set; }
         public bool HasCar { get; set; }
         public string CarPlateNumber { get; set; }
+        public bool UserIsAdmin { get; set; }
+       
     }
 }

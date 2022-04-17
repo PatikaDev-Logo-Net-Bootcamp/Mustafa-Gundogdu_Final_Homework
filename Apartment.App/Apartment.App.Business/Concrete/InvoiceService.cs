@@ -35,7 +35,7 @@ namespace Apartment.App.Business.Concrete
 
         public List<Invoice> GetAllUserInvoices(User user)
         {
-            return repository.Get().Where(i=>i.User==user).ToList();
+            return repository.Get().Where(i=>i.user == user).ToList();
         }
 
         public List<Invoice> GetAllHousingInvoices(Housing housing)

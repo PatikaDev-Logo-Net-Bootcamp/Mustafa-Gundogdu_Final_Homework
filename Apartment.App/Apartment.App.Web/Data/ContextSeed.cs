@@ -5,6 +5,7 @@ using Apartment.App.Business.Abstract;
 using Apartment.App.Business.Concrete;
 using Apartment.App.Domain.Entities;
 using Apartment.App.Domain.Entities.IdentityEntities;
+using Apartment.App.Web.Enums;
 using Microsoft.AspNetCore.Identity;
 namespace Apartment.App.Web.Data
 {
@@ -12,10 +13,8 @@ namespace Apartment.App.Web.Data
     {
         public static async Task SeedRoleAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            await roleManager.CreateAsync(new IdentityRole("superadmin"));
-            await roleManager.CreateAsync(new IdentityRole("admin"));
-            await roleManager.CreateAsync(new IdentityRole("user"));
-
+            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.User.ToString()));
         }
         public static async Task SeedSuperAdminAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -25,23 +24,22 @@ namespace Apartment.App.Web.Data
                 Email = "superadmin@superadmin.com",
                 FirstName = "super",
                 LastName = "admin",
+                TrIdentityNumber = "12345678900",
+                PhoneNumber = "12345678912",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
             };
-
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {
                 var user = await userManager.FindByEmailAsync(defaultUser.Email);
                 if (user == null)
                 {
-                    await userManager.CreateAsync(defaultUser, "Asd123.");
-                    await userManager.AddToRoleAsync(defaultUser, "superadmin");
-                    await userManager.AddToRoleAsync(defaultUser, "admin");
-                    await userManager.AddToRoleAsync(defaultUser, "user");
+                    await userManager.CreateAsync(defaultUser, "Admin123.");
+                    await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
+                    await userManager.AddToRoleAsync(defaultUser, Roles.User.ToString());
                 }
             }
         }
-
         public static void  SeedInvoiceTypeAsync(IinvoiceTypeService invoiceTypeService)
         {
             var types = new List<InvoiceType>

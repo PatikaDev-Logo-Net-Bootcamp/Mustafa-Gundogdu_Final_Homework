@@ -9,16 +9,16 @@ namespace Apartment.App.Domain.Entities
 {
     public class Invoice:BaseEntity
     {
-
-        public User User { get; set; }
+        public User user { get; set; }
         public Housing Housing { get; set; }
         public InvoiceType InvoiceType { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastSpendDate { get; set; }
         public bool IsSpended { get; set; }
         public int TotalDay { get; set; }
-        public int InvoiceAmountOfUse { get; set; }
-        public int InvoicePrice { get; set; }
+        public double InvoiceAmountOfUse { get; set; }
+        public double InvoiceUnitPrice { get; set; }
+        public double InvoicePrice { get; set; }
 
     }
 }

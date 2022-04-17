@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Enums\" />
     <Folder Include="Views\Shared\Partials\AdminPartials\" />
     <Folder Include="Views\Shared\Partials\UserPartials\" />
     <Folder Include="wwwroot\css\" />

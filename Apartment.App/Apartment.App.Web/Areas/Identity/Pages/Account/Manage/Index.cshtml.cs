@@ -36,18 +36,21 @@ namespace Apartment.App.Web.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Display(Name = "Tc Kimlik Numarası")]
+            public string TcIdentityNumber { get; set; }
         }
-
         private async Task LoadAsync(User user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
+            var currentUser = await _userManager.GetUserAsync(User);
+            var userName = currentUser.UserName;
+            var phoneNumber = currentUser.PhoneNumber;
+            var tcIdentityNumber = currentUser.TrIdentityNumber;
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                TcIdentityNumber = tcIdentityNumber
             };
         }
 

@@ -20,6 +20,7 @@
          <th>TC Kimlik No</th>
          <th>Email</th>
          <th>Plaka</th>
+         <th>Roller</th>
          <th>İşlemler</th>
      </tr>
      </thead>
@@ -42,9 +43,17 @@
                      <span class="label label-danger">Araç Yok</span>
                  }
              </td>
-             <th>
+             <td>
+                    <b>Kullanıcı</b>
+                    @if (user.UserIsAdmin)
+                    {
+                        <br />
+                        <b>Yönetici</b>
+                    }
+             </td>
+             <td>
                  <a class="btn btn-primary" href="@Url.Action("Update", "User",new{id=@user.TrIdentityNumber})">Güncelle</a>
-             </th>
+             </td>
          </tr>
      }
      </tbody>

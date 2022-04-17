@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Apartment.App.Domain.Entities.IdentityEntities;
@@ -43,25 +44,25 @@ namespace Apartment.App.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-
-            [Required]
+            [Required(ErrorMessage = "TC Kimlik no alani bos birakilamaz.")]
+            [Display(Name = "TC Kimlik No")]
+            [MaxLength(11, ErrorMessage = "TC kimlik numarası 11 karakterden çok olamaz")]
+            [MinLength(11, ErrorMessage = "TC kimlik numarası 11 karakterden az olamaz")]
+            public string TcIdentityNumber { get; set; }
+            [Required(ErrorMessage = "Şifre no alani bos birakilamaz.")]
+            [Display(Name = "Şifre No [İlk kez giriş yapıyorsanız: Sifre123.]")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Beni hatırla?")]
             public bool RememberMe { get; set; }
         }
-
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
-
             returnUrl = returnUrl ?? Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
@@ -72,6 +73,18 @@ namespace Apartment.App.Web.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        public string FindUserNameByTrIdentityNumber(string TrIdentityNumber)
+        {
+            var user = _userManager.Users.Where(x => x.TrIdentityNumber == TrIdentityNumber).FirstOrDefault();
+            if (user != null)
+            {
+                return user.UserName;
+            }
+            else
+            {
+                return null;
+            }
+        }
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -80,7 +93,14 @@ namespace Apartment.App.Web.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
+                var userName = FindUserNameByTrIdentityNumber(Input.TcIdentityNumber);
+                if (userName == null)
+                {
+                    ModelState.AddModelError(string.Empty, "TC Kimlik No veya Şifre hatalı.");
+                    return Page();
+                }
+                var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

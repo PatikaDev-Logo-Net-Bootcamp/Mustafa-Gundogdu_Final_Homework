@@ -7,12 +7,14 @@ using Apartment.App.Business.DTO;
 using Apartment.App.Domain.Entities;
 using Apartment.App.Web.Models;
 using Apartment.App.Web.Models.InvoiceTypeModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Apartment.App.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class InvoiceTypeController : Controller
     {
         private readonly IinvoiceTypeService invoiceTypeService;

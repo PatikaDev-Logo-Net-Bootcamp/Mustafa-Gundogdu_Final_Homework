@@ -170,14 +170,17 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                     b.Property<int?>("HousingId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InvoiceAmountOfUse")
-                        .HasColumnType("int");
+                    b.Property<double>("InvoiceAmountOfUse")
+                        .HasColumnType("float");
 
-                    b.Property<int>("InvoicePrice")
-                        .HasColumnType("int");
+                    b.Property<double>("InvoicePrice")
+                        .HasColumnType("float");
 
                     b.Property<int?>("InvoiceTypeId")
                         .HasColumnType("int");
+
+                    b.Property<double>("InvoiceUnitPrice")
+                        .HasColumnType("float");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -198,7 +201,7 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                     b.Property<int>("TotalDay")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("userId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -207,7 +210,7 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
 
                     b.HasIndex("InvoiceTypeId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userId");
 
                     b.ToTable("Invoices");
                 });
@@ -395,9 +398,9 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                         .WithMany()
                         .HasForeignKey("InvoiceTypeId");
 
-                    b.HasOne("Apartment.App.Domain.Entities.IdentityEntities.User", "User")
+                    b.HasOne("Apartment.App.Domain.Entities.IdentityEntities.User", "user")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("userId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

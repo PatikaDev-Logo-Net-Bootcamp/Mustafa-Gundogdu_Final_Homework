@@ -1,0 +1,79 @@
+﻿@model Apartment.App.Web.Models.InvoiceModels.InvoiceAddModel
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using Apartment.App.Domain.Entities.IdentityEntities
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Fatura Ekleme Penceresi</h1>
+<form id="myForm" method="post">
+    
+    <div class="form-group">
+        <label asp-for="Housings"></label>
+        <input asp-for="Housings"  class="form-control" />
+        @*  @Html.DropDownList("Housings", Model.Housings, new SelectList(Model.Housings, "Id", "Name")) 
+     *@  
+        @Html.DropDownListFor(m => m.Housings,
+            new SelectList(Model.Housings, "Id", "Name"),
+            "Ev Seçiniz")
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="invocieTypes"></label>
+        <input asp-for="invocieTypes"  class="form-control" />
+        @Html.DropDownListFor(m => m.Housings,
+            new SelectList(Model.invocieTypes, "Id", "Name"),
+        "Fatura Tipi Seçiniz")
+    </div>
+    @*    <div class="form-group">
+        <label asp-for="User.LastName"></label>
+        <input asp-for="User.LastName" class="form-control" />
+        <span asp-validation-for="User.LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="User.TrIdentityNumber"></label>
+        <input asp-for="User.TrIdentityNumber" class="form-control" />
+        <span asp-validation-for="User.TrIdentityNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="User.Email"></label>
+        <input asp-for="User.Email" class="form-control" />
+        <span asp-validation-for="User.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="User.PhoneNumber"></label>
+        <input asp-for="User.PhoneNumber" class="form-control" />
+        <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label asp-for="User.HasCar">
+                Kullanıcı Aracı var mı?
+                <input asp-for="User.HasCar" id="userHasCar" class="form-check" />
+            </label>
+        </div>
+    </div>
+    <div class="form-group" id="carPlateForm">
+        <label asp-for="User.CarPlateNumber"></label>
+        <input asp-for="User.CarPlateNumber" class="form-control" />
+        <span asp-validation-for="User.CarPlateNumber" class="text-danger"></span>
+    </div>*@
+
+    <input type="submit" value="submit" />
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+    
