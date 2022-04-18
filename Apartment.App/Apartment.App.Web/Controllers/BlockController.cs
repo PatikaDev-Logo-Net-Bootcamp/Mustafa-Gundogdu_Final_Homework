@@ -50,20 +50,32 @@ namespace Apartment.App.Web.Controllers
                 blockModel.blockHasHirer = blockHasHirerCheck(block.Id);
                 model.Blocks.Add(blockModel);
             }
-            
+
             return View(model);
         }
         [HttpGet]
         public IActionResult Add()
         {
             //MANUEL OLARAK İSİM VE NUMARA VERİLİYOR
-            var blocks = blockService.GetAll().OrderByDescending(b => b.Id).First();
-            var newBlock = new BlockDto();
-            if (blocks != null)
+
+            var blocksCount = blockService.GetAll().Count;
+            if (blocksCount == 0)
             {
-                newBlock.BlockNumber = blocks.BlockNumber + 1;
+                blockService.Add(new Block
+                {
+                    Name = "A",
+                    BlockNumber = blocksCount + 1
+                });
             }
-            blockService.Add(mapper.Map<Block>(newBlock));
+            else
+            {
+                var lastBlock = blockService.GetAll().OrderByDescending(b => b.Id).FirstOrDefault();
+                blockService.Add(new Block
+                {
+                    BlockNumber = lastBlock.BlockNumber + 1,
+                    Name = getNextChar(Convert.ToChar(lastBlock.Name)).ToString()
+                });
+            }
 
             return RedirectToAction("Index");
         }
@@ -82,7 +94,7 @@ namespace Apartment.App.Web.Controllers
 
                 foreach (var floor in floors)
                 {
-                   floorService.Delete(floor); 
+                    floorService.Delete(floor);
                 }
                 blockService.Delete(block);
             }
@@ -90,7 +102,19 @@ namespace Apartment.App.Web.Controllers
         }
         private bool blockHasHirerCheck(int blockId)
         {
-             return  housingService.GetHousingByBlockId(blockId).Where(h => h.IsEmpty == false).Any();
+            return housingService.GetHousingByBlockId(blockId).Where(h => h.IsEmpty == false).Any();
+        }
+
+        private static char getNextChar(char c)
+        {
+
+
+            int ascii = (int)c;
+
+            int nextAscii = ascii + 1;
+
+            char nextChar = (char)nextAscii;
+            return nextChar;
         }
     }
 

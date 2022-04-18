@@ -33,18 +33,18 @@ namespace Apartment.App.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add(int blockId)
+        public IActionResult Add(int id)
         {
-            var lastFloor = floorsService.GetAllByBlockId(blockId).OrderByDescending(x => x.Id).FirstOrDefault();
+            var lastFloor = floorsService.GetAllByBlockId(id).OrderByDescending(x => x.Id).FirstOrDefault();
             var newFloor = new FloorDto();
             if (lastFloor == null)
             {
-                newFloor.BlockId = blockId;
+                newFloor.BlockId = id;
                 newFloor.FloorNumber = 0;
             }
             else
             {
-                newFloor.BlockId = blockId;
+                newFloor.BlockId = id;
                 newFloor.FloorNumber = lastFloor.FloorNumber + 1;
             }
             floorsService.Add(new Floor

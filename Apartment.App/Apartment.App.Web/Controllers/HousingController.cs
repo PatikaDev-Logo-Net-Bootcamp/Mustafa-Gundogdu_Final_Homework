@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Apartment.App.Business.Abstract;
 using Apartment.App.Business.DTO;
 using Apartment.App.Domain.Entities;
 using Apartment.App.Domain.Entities.IdentityEntities;
 using Apartment.App.Web.Enums;
+using Apartment.App.Web.Models.HousingViewModels;
 using Apartment.App.Web.Models.HousingViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -17,14 +19,16 @@ namespace Apartment.App.Web.Controllers
         private readonly UserManager<User> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly SignInManager<User> signInManager;
+        private readonly IFloorService floorService;
         private readonly IHousingService housingService;
         private readonly IMapper mapper;
         private User currentUser = null;
-        public HousingController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IHousingService housingService ,IMapper mapper)
+        public HousingController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager,IFloorService floorService, IHousingService housingService ,IMapper mapper)
         {
             this.userManager = userManager;
             this.housingService = housingService;
             this.roleManager = roleManager;
+            this.floorService = floorService;
             this.signInManager = signInManager;
             this.mapper = mapper;
             currentUser = userManager.FindByNameAsync(signInManager.Context.User.Identity.Name).Result;
@@ -43,8 +47,7 @@ namespace Apartment.App.Web.Controllers
                     Id = housing.Id,
                     IsEmpty = housing.IsEmpty,
                     IsHomeowner = housing.IsHomeowner,
-                    BlokNumber = housing.Floor.FloorNumber,
-                    FloorNumber = housing.Floor.Block.BlockNumber,
+                    Floor = mapper.Map<FloorDto>(floorService.GetById(housing.Floor.Id)) ,
                     ApartmentNumber = housing.ApartmentNumber,
                     ApartmentSizeInfo = housing.ApartmentSizeInfo,
                 });
@@ -53,9 +56,23 @@ namespace Apartment.App.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Add(int floorId)
         {
-            return View();
+            var lastHusingNumber = housingService.GetHousingCountByFloorId(floorId) + 1;
+            var floor = floorService.GetById(floorId);
+            var users = userManager.Users.ToList();
+            var model = new HousingAddViewModel
+            {
+                Users = mapper.Map<List<UserDto>>(users),
+                HousingHirerTcIdentityNumber = "",
+                Housing = new HousingDto
+                {
+                    ApartmentNumber = lastHusingNumber,
+                    ApartmentSizeInfo = "",
+                    Floor = mapper.Map<FloorDto>(floorService.GetById(floorId)),
+                }
+            };
+            return View(model);
         }
         [HttpPost]
         public IActionResult Update()

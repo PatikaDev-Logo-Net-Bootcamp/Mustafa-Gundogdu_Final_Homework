@@ -57,10 +57,10 @@
                         }
                     }
                     <br />
-                    <a class="btn btn-info" href="@Url.Action("Add", "Floor")">Yeni Kat Ekle</a>
+                    <a class="btn btn-info" href="@Url.Action("Add", "Floor",new{id=@Model.Blocks[i].block.Id} )">Yeni Kat Ekle</a>
                     @if (@Model.Blocks[i].blockHasHirer ==false)
                     {
-                        <a class="btn btn-danger" href="@Url.Action("Delete", "Block",new{id=@Model.Blocks[i].block.Id} )">Blok Sil</a>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "Block",new{id=@Model.Blocks[i].block.Id})">Blok Sil</a>
                     }
                 </div>
             }
@@ -86,7 +86,7 @@
                         }
                     }
                     <br />
-                    <a class="btn btn-info" href="@Url.Action("Add", "Floor")">Yeni Kat Ekle</a>
+                    <a class="btn btn-info" href="@Url.Action("Add", "Floor",new{id=@Model.Blocks[i].block.Id} )">Yeni Kat Ekle</a>
                     @if (@Model.Blocks[i].blockHasHirer ==false)
                     {
                         <a class="btn btn-danger" href="@Url.Action("Delete", "Block",new{id=@Model.Blocks[i].block.Id} )">Blok Sil</a>

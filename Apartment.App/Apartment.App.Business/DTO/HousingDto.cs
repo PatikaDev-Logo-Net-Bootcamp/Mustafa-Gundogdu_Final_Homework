@@ -11,8 +11,7 @@ namespace Apartment.App.Business.DTO
         public List<InvoiceDto> Invoices { get; set; }
         public bool IsEmpty { get; set; }
         public bool IsHomeowner { get; set; }
-        public int BlokNumber { get; set; }
-        public int FloorNumber { get; set; }
+        public FloorDto Floor { get; set; }
         public int ApartmentNumber { get; set; }
         public string ApartmentSizeInfo { get; set; }
     }
