@@ -50,7 +50,8 @@ namespace Apartment.App.Web
             services.AddScoped<IHousingService, HousingService>();
             services.AddScoped<IinvoiceService, InvoiceService>();
             services.AddScoped<IinvoiceTypeService, InvoiceTypeService>();
-
+            services.AddScoped<IBlockService,BlockService>();
+            services.AddScoped<IFloorService, FloorService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

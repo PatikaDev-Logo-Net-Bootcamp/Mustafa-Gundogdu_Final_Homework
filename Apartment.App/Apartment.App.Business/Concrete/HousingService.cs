@@ -34,12 +34,20 @@ namespace Apartment.App.Business.Concrete
         {
             return repository.Get().Where(h => h.Id == housingId).First();
         }
+        public List<Housing> GetHousingByBlockId(int blockId)
+        {
+            return repository.Get().Where(h => h.Floor.Block.Id == blockId).ToList();
+        }
 
         public List<Housing> GetHousingsByUserId(string userId)
         {
             return repository.Get().Where(h => h.User.Id == userId).ToList();
         }
-        
+
+        public int GetHousingCountByFloorId(int floorId)
+        {
+            return repository.Get().Where(h => h.Floor.Id == floorId).Count();
+        }
 
         public void Add(Housing housing)
         {

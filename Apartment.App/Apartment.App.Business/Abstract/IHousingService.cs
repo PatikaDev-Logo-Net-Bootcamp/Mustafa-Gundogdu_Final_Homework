@@ -11,7 +11,9 @@ namespace Apartment.App.Business.Abstract
          List<Housing> GetAllHousing();
          List<Housing> GetAllActiveHousings();
          Housing GetHousingById(int housingId);
+         List<Housing> GetHousingByBlockId(int blockId);
          List<Housing> GetHousingsByUserId(string userId);
+         int GetHousingCountByFloorId(int floorId);
          
          void Add(Housing housing);
          void Update(Housing housing);

@@ -30,9 +30,14 @@ namespace Apartment.App.Web
                     var context = services.GetRequiredService<AppDbContext>();
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    
                     await ContextSeed.SeedRoleAsync(userManager, roleManager);
                     await ContextSeed.SeedSuperAdminAsync(userManager, roleManager);
-                    ContextSeed.SeedInvoiceTypeAsync(services.GetRequiredService<IinvoiceTypeService>());
+                   
+                    ContextSeed.SeedInvoiceType(services.GetRequiredService<IinvoiceTypeService>());
+                    ContextSeed.SeedAddBlocks(services.GetRequiredService<IBlockService>());
+                    ContextSeed.SeedAddFloors(services.GetRequiredService<IFloorService>(), services.GetRequiredService<IBlockService>());
+
                 }
                 catch (Exception ex)
                 {

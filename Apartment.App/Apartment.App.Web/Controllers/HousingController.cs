@@ -43,8 +43,8 @@ namespace Apartment.App.Web.Controllers
                     Id = housing.Id,
                     IsEmpty = housing.IsEmpty,
                     IsHomeowner = housing.IsHomeowner,
-                    BlokNumber = housing.BlockNumber,
-                    FloorNumber = housing.FloorNumber,
+                    BlokNumber = housing.Floor.FloorNumber,
+                    FloorNumber = housing.Floor.Block.BlockNumber,
                     ApartmentNumber = housing.ApartmentNumber,
                     ApartmentSizeInfo = housing.ApartmentSizeInfo,
                 });

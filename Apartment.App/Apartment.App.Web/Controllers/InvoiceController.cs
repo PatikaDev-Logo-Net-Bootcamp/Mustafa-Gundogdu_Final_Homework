@@ -53,7 +53,7 @@ namespace Apartment.App.Web.Controllers
                         housingId = invoice.Housing.Id,
                         InvoiceOwnerTrIdentity= invoice.user.TrIdentityNumber,
                         InvoiceOwnerName = invoice.user.FirstName + " " +invoice.user.LastName,
-                        housingAdress = invoice.Housing.BlockNumber + " " + invoice.Housing.FloorNumber + " " + invoice.Housing.ApartmentNumber,
+                        housingAdress = invoice.Housing.Floor.Block.BlockNumber + " " + invoice.Housing.Floor.FloorNumber + " " + invoice.Housing.ApartmentNumber,
                         invoiceType = new InvoiceTypeDto { Id = invoice.InvoiceType.Id, Name = invoice.InvoiceType.TypeName,Unit = invoice.InvoiceType.TypeUnit},
                         IsSpended = invoice.IsSpended,
                         TotalDay = invoice.TotalDay,

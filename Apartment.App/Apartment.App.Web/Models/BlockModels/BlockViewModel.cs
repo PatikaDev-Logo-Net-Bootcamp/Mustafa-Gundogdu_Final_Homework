@@ -5,6 +5,6 @@ namespace Apartment.App.Web.Models.BlockModels
 {
     public class BlockViewModel
     {
-       public List<BlockDto> Blocks { get; set; } = new List<BlockDto>()
+        public List<BlockModel> Blocks { get; set; } = new List<BlockModel>();
     }
 }

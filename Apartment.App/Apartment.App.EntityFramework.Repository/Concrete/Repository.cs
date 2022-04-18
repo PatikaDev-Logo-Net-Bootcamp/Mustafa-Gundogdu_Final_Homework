@@ -34,7 +34,7 @@ namespace Apartment.App.DataAccessEntityFramework.Repository.Concrete
 
         public IQueryable<T> Get()
         {
-            return unitOfWork.Context.Set<T>().Where(x => !x.IsDeleted).AsQueryable();
+            return unitOfWork.Context.Set<T>().Where(x => x.IsDeleted ==false).AsQueryable();
         }
 
         public void Update(T entity)

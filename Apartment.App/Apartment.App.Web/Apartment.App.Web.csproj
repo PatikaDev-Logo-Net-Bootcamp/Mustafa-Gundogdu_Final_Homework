@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Floor\" />
     <Folder Include="Views\Shared\Partials\AdminPartials\" />
     <Folder Include="Views\Shared\Partials\UserPartials\" />
     <Folder Include="wwwroot\css\" />

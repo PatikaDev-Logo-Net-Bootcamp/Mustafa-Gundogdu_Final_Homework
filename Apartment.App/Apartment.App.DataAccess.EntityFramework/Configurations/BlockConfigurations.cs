@@ -13,7 +13,6 @@ namespace Apartment.App.DataAccess.EntityFramework.Configurations
         {
             builder.ToTable("Blocks");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.BlockNumber).UseIdentityColumn();
         }
     }
 

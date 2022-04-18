@@ -40,7 +40,7 @@ namespace Apartment.App.Web.Data
                 }
             }
         }
-        public static void  SeedInvoiceTypeAsync(IinvoiceTypeService invoiceTypeService)
+        public static void  SeedInvoiceType(IinvoiceTypeService invoiceTypeService)
         {
             var types = new List<InvoiceType>
             {
@@ -57,5 +57,39 @@ namespace Apartment.App.Web.Data
                 }
             }   
         }
+
+        public static void SeedAddBlocks(IBlockService blockService)
+        {
+            var blocks = new List<Block>
+            {
+                new Block {BlockNumber = 1, Name = "A"},
+                new Block {BlockNumber = 2, Name = "B"},
+            };
+            foreach (var block in blocks)
+            {
+                if (! blockService.GetAll().Where(b => b.BlockNumber == block.BlockNumber).Any())
+                {
+                    blockService.Add(block);
+                }
+               
+            }
+        }
+
+        public static void SeedAddFloors(IFloorService floorService,IBlockService blockService)
+        {
+            var blocks = blockService.GetAll();
+
+            foreach (var block in blocks)
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    if (!floorService.GetAll().Any(f => f.FloorNumber == i && f.Block.Id == block.Id))
+                    {
+                        floorService.Add(new Floor { Block = block, FloorNumber = i });
+                    }
+                }
+            }
+        }
+
     }
 }

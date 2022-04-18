@@ -1,11 +1,15 @@
-﻿using Apartment.App.Business.Abstract;
+﻿using System.Linq;
+using Apartment.App.Business.Abstract;
 using Apartment.App.Business.DTO;
+using Apartment.App.Domain.Entities;
 using Apartment.App.Web.Models.FloorModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Apartment.App.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FloorController : Controller
     {
         private IFloorService floorsService;
@@ -25,9 +29,31 @@ namespace Apartment.App.Web.Controllers
             {
                 model.Floors.Add(mapper.Map<FloorDto>(floor));
             }
-            model.Floors.Sort((dto, floorDto) => dto.block.BlockNumber);
-            return View(model);
+            return RedirectToAction("Index","Block");
         }
-        
+
+        [HttpGet]
+        public IActionResult Add(int blockId)
+        {
+            var lastFloor = floorsService.GetAllByBlockId(blockId).OrderByDescending(x => x.Id).FirstOrDefault();
+            var newFloor = new FloorDto();
+            if (lastFloor == null)
+            {
+                newFloor.BlockId = blockId;
+                newFloor.FloorNumber = 0;
+            }
+            else
+            {
+                newFloor.BlockId = blockId;
+                newFloor.FloorNumber = lastFloor.FloorNumber + 1;
+            }
+            floorsService.Add(new Floor
+            {
+                FloorNumber = newFloor.FloorNumber,
+                Block = blockService.GetById(newFloor.BlockId),
+            });
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -8,6 +8,8 @@ namespace Apartment.App.Business.DTO
     {
         public int Id { get; set; }
         public int FloorNumber { get; set; }
-        public List<HousingDto> Housings { get; set; }
+        public int BlockId { get; set; }
+        public int HousingCount { get; set; }
+        public List<HousingDto> Housings { get; set; } = new List<HousingDto>();
     }
 }

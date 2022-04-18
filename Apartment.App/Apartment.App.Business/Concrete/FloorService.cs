@@ -8,7 +8,7 @@ using Apartment.App.Domain.Entities;
 
 namespace Apartment.App.Business.Concrete
 {
-    internal class FloorService:IFloorService
+    public class FloorService:IFloorService
     {
         private readonly IRepository<Floor> repository;
         private readonly IUnitOfWork unitOfWork;
