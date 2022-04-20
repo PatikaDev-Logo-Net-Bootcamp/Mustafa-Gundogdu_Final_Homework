@@ -13,7 +13,7 @@ namespace Apartment.App.Domain.Entities
         public Housing Housing { get; set; }
         public InvoiceType InvoiceType { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public DateTime? LastSpendDate { get; set; }
+        public DateTime? LastSpendDate { get; set; } 
         public bool IsSpended { get; set; }
         public int TotalDay { get; set; }
         public double InvoiceAmountOfUse { get; set; }

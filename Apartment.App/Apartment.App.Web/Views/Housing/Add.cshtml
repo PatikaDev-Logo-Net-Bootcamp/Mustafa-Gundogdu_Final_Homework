@@ -1,51 +1,49 @@
 ﻿@model Apartment.App.Web.Models.HousingViewModels.HousingAddViewModel
-@using Microsoft.AspNetCore.Identity
-@using System.Security.Claims
-@using Apartment.App.Domain.Entities.IdentityEntities
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Mesken Ekleme Penceresi</h1>
+<h1>Mesken/Daire Ekleme Penceresi</h1>
 
 <form id="housingAddForm" method="post">
-
-    <div class="form-group">
-        <label asp-for="Housing.Floor.BlockNumber"></label>
-        <input asp-for="Housing.Floor.BlockNumber" class="form-control" disabled="disabled" />
-        <span asp-validation-for="Housing.Floor.BlockNumber" class="text-danger"></span>
+    
+    <div class="form-group "   >
+        <input asp-for="Id" class="form-control" hidden="hidden" type="number" readonly="readonly"    />
     </div>
     <div class="form-group">
-        <label asp-for="Housing.Floor.FloorNumber"></label>
-        <input asp-for="Housing.Floor.FloorNumber" class="form-control" disabled="disabled" />
-        <span asp-validation-for="Housing.Floor.FloorNumber" class="text-danger"></span>
+        <label asp-for="BlockNumber"></label>
+        <input asp-for="BlockNumber" class="form-control" type="number" value="@Model.BlockNumber" readonly="readonly"  />
+        <span asp-validation-for="BlockNumber" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Housing.ApartmentNumber"></label>
-        <input asp-for="Housing.ApartmentNumber" class="form-control" disabled="disabled" />
-        <span asp-validation-for="Housing.ApartmentNumber" class="text-danger"></span>
+        <label asp-for="FloorNumber"></label>
+        <input asp-for="FloorNumber" class="form-control" type="number" value="@Model.FloorNumber" readonly="readonly"  />
+        <span asp-validation-for="FloorNumber" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Housing.ApartmentSizeInfo"></label>
-        <input asp-for="Housing.ApartmentSizeInfo" class="form-control" />
-        <span asp-validation-for="Housing.ApartmentSizeInfo" class="text-danger"></span>
+        <label asp-for="ApartmentNumber"></label>
+        <input asp-for="ApartmentNumber" class="form-control" type="number" value="@Model.ApartmentNumber"readonly="readonly"  />
+        <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ApartmentSizeInfo"></label>
+        <input asp-for="ApartmentSizeInfo" class="form-control" />
+        <span asp-validation-for="ApartmentSizeInfo" class="text-danger"></span>
     </div>
     
     <div class="form-group">
         <div class="checkbox">
-            <label asp-for="Housing.IsEmpty">
+            <label asp-for="IsEmpty">
                Kiracı Var mı?
-                <input asp-for="Housing.IsEmpty" id="hosuingHasHirer" class="form-check" />
+                <input asp-for="IsEmpty" id="hosuingHasHirer"  class="form-check" />
             </label>
         </div>
     </div>
     
     <div class="form-group" id="isHomeOwnerCheckForm">
         <div class="checkbox">
-            <label asp-for="Housing.IsHomeowner">
+            <label asp-for="IsHomeowner">
                 Ev Sahibi mi?
-                <input asp-for="Housing.IsHomeowner" id="IsHomeowner" class="form-check" />
+                <input asp-for="IsHomeowner" id="IsHomeowner" class="form-check" />
             </label>
         </div>
     </div>
@@ -55,24 +53,28 @@
         <input asp-for="HousingHirerTcIdentityNumber" class="form-control" />
         <span asp-validation-for="HousingHirerTcIdentityNumber" class="text-danger"></span>
     </div>
-    <input type="submit" value="submit" />
+    <input type="submit" value="KAYDET" />
 </form>
-
 
 @section Scripts {
 <script>
     $(document).ready(function () {
-        $("#housingAddForm").find("#housingTcIdentityNumberForm").hide(); 
-        $("#housingAddForm").find("#isHomeOwnerCheckForm").hide(); 
+       
+        $("#housingAddForm").find("#isHomeOwnerCheckForm").hide();
+        $("#IsHomeowner").prop("readonly", true);
+        $("#HousingHirerTcIdentityNumber").prop("readonly", true);
         
-        $("#IsEmpty").change(function () {
+        
+        $("#hosuingHasHirer").change(function () {
             if ($(this).is(":checked")) {
-                $("#housingAddForm").find("#housingTcIdentityNumberForm").show();
-                $("#housingAddForm").find("#isHomeOwnerCheckForm").show(); 
-
+                $("#IsHomeowner").prop("readonly", false);
+                $("#HousingHirerTcIdentityNumber").prop("readonly", false);
+                $("#housingAddForm").find("#isHomeOwnerCheckForm").show();
             } else {
-                $("#housingAddForm").find("#housingTcIdentityNumberForm").hide();
-                $("#housingAddForm").find("#isHomeOwnerCheckForm").hide(); 
+                $("#IsHomeowner").prop("readonly", true);
+                $("#HousingHirerTcIdentityNumber").prop("readonly", true);
+                $("#housingAddForm").find("#isHomeOwnerCheckForm").hide();
+
             }
         });
     });

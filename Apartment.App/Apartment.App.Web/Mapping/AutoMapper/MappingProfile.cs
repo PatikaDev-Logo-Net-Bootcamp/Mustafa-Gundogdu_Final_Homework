@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices.ComTypes;
 using Apartment.App.Business.DTO;
 using Apartment.App.Domain.Entities;
+using Apartment.App.Web.Models.HousingViewModels;
 using AutoMapper;
 
 namespace Apartment.App.Web.Mapping.AutoMapper
@@ -17,7 +18,7 @@ namespace Apartment.App.Web.Mapping.AutoMapper
             CreateMap<BlockDto, Block>();
             CreateMap<Invoice, InvoiceDto>();
             CreateMap<InvoiceType, InvoiceTypeDto>();
-            CreateMap<Housing, Housing>();
+            CreateMap<HousingDto, Housing>();
 
         }
     }

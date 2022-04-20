@@ -107,7 +107,6 @@ namespace Apartment.App.Web.Controllers
                 PhoneNumber = user.PhoneNumber,
                 UserIsAdmin = UserIsAdmin(user.TrIdentityNumber)
             };
-            
             userManager.UpdateAsync(user);
             return View(model);
         }

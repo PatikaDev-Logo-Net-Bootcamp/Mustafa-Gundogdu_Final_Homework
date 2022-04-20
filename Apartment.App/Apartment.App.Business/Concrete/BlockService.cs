@@ -26,6 +26,7 @@ namespace Apartment.App.Business.Concrete
         {
             return repository.Get().Where(b=>b.Id==id).First();    
         }
+
         public void Add(Block entity)
         {
             repository.Add(entity);

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.WebSockets;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Apartment.App.Business.Abstract;
 using Apartment.App.Business.Concrete;
@@ -22,46 +26,68 @@ namespace Apartment.App.Web.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly SignInManager<User> signInManager;
         private readonly IinvoiceService invoiceService;
+        private readonly IHousingService housingService;
+        private readonly IinvoiceTypeService invoiceTypeService;
+        private readonly IFloorService floorService;
+        private readonly IBlockService blockService;
         private readonly IMapper mapper;
         private User currentUser = null;
-        public InvoiceController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager,IinvoiceService invoiceService,IMapper mapper)
+        public InvoiceController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IinvoiceService invoiceService, IHousingService housingService, IinvoiceTypeService invoiceTypeService, IFloorService floorService,IBlockService blockService ,IMapper mapper)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
+            this.housingService = housingService;
             this.invoiceService = invoiceService;
+            this.invoiceTypeService = invoiceTypeService;
+            this.floorService = floorService;
+            this.blockService = blockService;
             this.mapper = mapper;
             currentUser = userManager.FindByNameAsync(signInManager.Context.User.Identity.Name).Result;
         }
-
-        // overload edip ev id sine göre de faturaları getirebiliriz.
-        public IActionResult Index()
+        public IActionResult Index(int id = 0)
         {
-            if (currentUser!=null)
+            if (currentUser != null)
             {
+                var users = userManager.Users.ToList();
+                var housings = housingService.GetAllHousing();
                 var model = new InvoiceViewModel();
                 var invoices = new List<Invoice>();
-                
+                var floors = floorService.GetAll();
+                var blocks = blockService.GetAll();
+                var invoiceTypes = invoiceTypeService.getAllInvoiceTypes();
                 model.isUserAdmin = getCurrentUserRole() == Roles.Admin ? true : false;
-                
-                invoices = model.isUserAdmin ? invoiceService.GetAllInvocies() : invoiceService.GetAllUserInvoices(currentUser);
+                if (model.isUserAdmin && id == 0)
+                {
+                    invoiceService.GetAllInvocies().ToList().ForEach(x => invoices.Add(x));
+                }
+                else if (model.isUserAdmin && id != 0)
+                {
+                    invoiceService.GetAllInvocies().Where(i => i.Housing.Id == id).ToList().ForEach(i => invoices.Add(i));
+                }
+                else
+                {
+                    invoices = invoiceService.GetAllUserInvoices(currentUser);
+                    
+                }
 
                 foreach (var invoice in invoices)
                 {
                     model.Invoices.Add(new InvoiceModel
-                    { 
+                    {
+                        Id = invoice.Id,
                         housingId = invoice.Housing.Id,
-                        InvoiceOwnerTrIdentity= invoice.user.TrIdentityNumber,
-                        InvoiceOwnerName = invoice.user.FirstName + " " +invoice.user.LastName,
+                        InvoiceOwnerTrIdentity = invoice.user.TrIdentityNumber,
+                        InvoiceOwnerName = invoice.user.FirstName + " " + invoice.user.LastName,
                         housingAdress = invoice.Housing.Floor.Block.BlockNumber + " " + invoice.Housing.Floor.FloorNumber + " " + invoice.Housing.ApartmentNumber,
-                        invoiceType = new InvoiceTypeDto { Id = invoice.InvoiceType.Id, Name = invoice.InvoiceType.TypeName,Unit = invoice.InvoiceType.TypeUnit},
+                        invoiceType = new InvoiceTypeDto { Id = invoice.InvoiceType.Id, Name = invoice.InvoiceType.TypeName, Unit = invoice.InvoiceType.TypeUnit },
                         IsSpended = invoice.IsSpended,
                         TotalDay = invoice.TotalDay,
                         InvoiceAmountOfUse = invoice.InvoiceAmountOfUse,
                         InvoiceUnitPrice = invoice.InvoiceUnitPrice,
                         InvoicePrice = invoice.InvoicePrice,
                         CreatedDate = invoice.CreatedDate,
-                        LastSpendDate = invoice.LastSpendDate,
+                        LastSpendDate = invoice.LastSpendDate
                     });
                 }
                 return View(model);
@@ -69,23 +95,81 @@ namespace Apartment.App.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        #region  Fatura ekleme
+        #region  Fatura ekleme 
+
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Add(int housingId)  //fatura sadece dolu bir eve kesilebilir.
+        {
+            var floors = floorService.GetAll();
+            var blocks = blockService.GetAll(); 
+            var housings = housingService.GetAllHousing().Where(x => x.IsEmpty == false).ToList();
+            var users = userManager.Users.ToList();
+            
+            
+            ViewData["InvoiceTypes"] = invoiceTypeService.getAllInvoiceTypes();
+            
+            var model = new InvoiceAddModel();
+            
+            model.housingId = housingId;
+            model.InvoiceOwnerTrIdentity = users.Where(x => x.Id == housings.Find(h => h.Id == model.housingId).User.Id).First().TrIdentityNumber ;
+            model.housingOwner = users.Where(x => x.TrIdentityNumber == model.InvoiceOwnerTrIdentity).First().FirstName + " " + users.Where(x => x.TrIdentityNumber == model.InvoiceOwnerTrIdentity).First().LastName;
+            model.housingAddress = housingService.GetHousingAddressByHousingId(model.housingId);
+            model.InvoiceAmountOfUse = "0";
+            model.InvoicePrice = "0";
+            model.InvoiceTypeId = -1;
+            model.InvoiceUnitPrice = "0";
+            model.TotalDay = 0;
+            
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Add(InvoiceAddModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                invoiceService.Add(new Invoice
+                {
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = currentUser.Id,
+                    CreatedDate = DateTime.Now,
+                    Housing = housingService.GetHousingById(model.housingId),
+                    user = userManager.Users.Where(x => x.TrIdentityNumber == model.InvoiceOwnerTrIdentity).First(),
+                    InvoiceAmountOfUse = Convert.ToDouble(model.InvoiceAmountOfUse.Split('.')[0] + "," + model.InvoiceAmountOfUse.Split('.')[1]),
+                    InvoicePrice = Convert.ToDouble(model.InvoicePrice.Split('.')[0] + "," + model.InvoicePrice.Split('.')[1]),
+                    InvoiceUnitPrice = Convert.ToDouble(model.InvoiceUnitPrice.Split('.')[0] + "," + model.InvoiceUnitPrice.Split('.')[1]),
+                    IsDeleted = false,
+                    IsSpended = false,
+                    InvoiceType = invoiceTypeService.GetInvoiceTypeById(model.InvoiceTypeId),
+                    TotalDay = model.TotalDay,
+                    LastUpdatedAt = DateTime.Now,
+                    LastUpdatedBy = currentUser.Id,
+                    LastSpendDate = DateTime.Now.AddDays(model.TotalDay)
+                });
+                return RedirectToAction("Index", "Invoice",0);
+            }
+            ViewData["InvoiceTypes"] = invoiceTypeService.getAllInvoiceTypes();
+            return View();
+        }
+        #endregion 
+
+        #region Ödeme işlemleri // YAPILMADI
+
+        [HttpGet]
+        public IActionResult Payment(int id)
         {
             return View();
         }
-        //[Authorize(Roles = "admin")]
-        //[HttpPost]
-        //public IActionResult Add()
-        //{
-        //    return View();
-        //}
-        #endregion
+        [HttpPost]
+        public IActionResult Payment(PayViewModel model)
+        {
+            return View();
+        }
 
-        #region Fatura güncelleme
+        #endregion
+        
+        #region Fatura güncelleme // YAPILMADI
         [HttpGet]
-        public IActionResult Update()
+        public IActionResult Update(int id)
         {
             return View();
         }
@@ -97,12 +181,22 @@ namespace Apartment.App.Web.Controllers
         //}
         #endregion
 
-        #region Fatura ödeme
+        #region Fatura ödeme // YAPILMADI
 
 
 
         #endregion
 
+        #region Fatura Ödeme bilgileri gösterme  //YAPILMADI
+
+        [HttpGet]
+        public IActionResult PaymentDetail(int id)
+        {
+            return View();
+        }
+
+        #endregion
+    
         #region Metotlar
 
         public Roles getCurrentUserRole()
@@ -111,10 +205,10 @@ namespace Apartment.App.Web.Controllers
             if (roles.Contains(Roles.Admin.ToString()))
             {
                 return Roles.Admin;
-            } 
+            }
             return Roles.User;
-            
         }
+        
         #endregion
     }
 }

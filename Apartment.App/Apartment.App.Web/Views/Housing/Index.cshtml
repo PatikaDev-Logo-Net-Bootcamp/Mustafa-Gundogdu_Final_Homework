@@ -1,19 +1,14 @@
 ﻿@model Apartment.App.Web.Models.HousingViewModels.HousingViewModel
-@using Microsoft.AspNetCore.Identity
-@using System.Security.Claims
-@using Apartment.App.Domain.Entities.IdentityEntities
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Ev Yönetim Penceresi</h1>
+<h1>Daire Yönetim Penceresi</h1>
  
-
 <table class="table table-striped">
     <thead>
     <tr>
         <th>Ev Durumu</th>
+        <th>Kiracı Mı?</th>
         <th>Blok</th>
         <th>Kat</th>
         <th>No</th>
@@ -33,26 +28,38 @@
                 else
                 {
                     <b>DOLU </b>
-                    <b>
-                        @if (housing.IsHomeowner)
-                        {
-                            <b>EV SAHİBİ</b>
-                        }
-                        else
-                        {
-                            <b>KİRACI</b>
-                        }
-                    </b>
+                    
+                   
                 }
             </td>
-            <td>@housing.Floor.BlockNumber</td>
-            <td>@housing.Floor.FloorNumber</td>
+            <td>
+                @if (housing.IsHomeowner)
+                {
+                    <b>EV SAHİBİ</b>
+                }
+                else
+                {
+                    <b>KİRACI</b>
+                }
+
+            </td>
+            <td>@housing.BlockNumber</td>
+            <td>@housing.FloorNumber</td>
             <td>@housing.ApartmentNumber</td>
             <td>@housing.ApartmentSizeInfo</td>
             <td>
                     @if (Model.isUserAdmin)
                     {
-                        <a class="btn btn-primary" href="@Url.Action("Update", "Housing",@housing.Id)">Yeni Fatura Tipi Ekle</a>
+                        @if (housing.IsEmpty == false)
+                        {
+                            <a class="btn btn-info" href="@Url.Action("Add", "Invoice",new{housingId=@housing.Id})">Yeni Fatura Ekle</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-info" href="@Url.Action("AddHirer", "Housing",new{housingId=@housing.Id})">Kiracı Ekle</a>
+                        }
+                        
+                        <a class="btn btn-primary" href="@Url.Action("Index", "Invoice",new{id=@housing.Id})">Faturaları Görüntüle</a>
                     }
                     else 
                     {
@@ -66,5 +73,5 @@
   
 @if (Model.isUserAdmin)
 {
-    <a class="btn btn-info" href="@Url.Action("Add", "Invoice")">Yeni Ev Ekle</a>
+    <a class="btn btn-info" href="@Url.Action("Index", "Block")">Yeni Ev Ekle</a>
 }

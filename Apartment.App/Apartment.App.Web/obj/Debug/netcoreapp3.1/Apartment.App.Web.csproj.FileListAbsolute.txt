@@ -435,3 +435,8 @@ C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartm
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Block\Index.cshtml.g.cs
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Housing\Add.cshtml.g.cs
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Housing\Index.cshtml.g.cs
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Housing\Update.cshtml.g.cs
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Invoice\Payment.cshtml.g.cs
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Invoice\PaymentDetail.cshtml.g.cs
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Invoice\Update.cshtml.g.cs
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\obj\Debug\netcoreapp3.1\Razor\Views\Housing\AddHirer.cshtml.g.cs

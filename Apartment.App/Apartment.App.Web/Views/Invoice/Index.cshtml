@@ -29,7 +29,7 @@
         <th>Son Ödeme Tarihi</th>
         <th>Tutar</th>
         <th>İşlemler</th>
-        <th>Ödenme Durumu</th>
+        <th>Durum</th>
     </tr>
     </thead>
     <tbody>
@@ -47,22 +47,40 @@
             <td>@invoice.LastSpendDate</td>
             <td>@invoice.InvoicePrice</td>
             <td>
-                    @if (invoice.IsSpended)
-                    {
-                        <a class="btn btn-info" >Ödeme Bilgilerini göster</a>
-                    }
-                    else
-                    {
-                        <a class="btn btn-success" >Ödeme Yap</a>
-                    }
-                    @if (Model.isUserAdmin && invoice.IsSpended != false)
-                    {
-                        <a class="btn btn-primary" href="@Url.Action("Index", "Invoice")">Güncelle</a>
-                    }
+                
+                @if (invoice.IsSpended)
+                {
+                    <a class="btn btn-primary" href="@Url.Action("PaymentDetail", "Invoice",new{id=invoice.Id})">ÖDEME BİLGİSİ GÖSTER</a>
+                }
+                else
+                {
+                    <a class="btn btn-success" href="@Url.Action("Payment", "Invoice",new{id=invoice.Id}))">ÖDEME YAP</a>
+                }
+                
+                
+                @if (Model.isUserAdmin && invoice.IsSpended == false)
+                {
+                    <a class="btn btn-primary" href="@Url.Action("Update", "Invoice",new{id=invoice.Id}))">Güncelle</a>
+                }   
+            </td>
+            <td>
+                @if (invoice.IsSpended)
+                {
+                    <div class="alert alert-success" role="alert">
+                        ÖDENDİ
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger" role="alert">
+                        ÖDENMEDİ
+                    </div>
+
+                }
+                
             </td>
         </tr>
     }
     </tbody>
 </table>
  
-<a class="btn btn-primary" href="@Url.Action("Index", "Invoice")">Yeni Fatura Tipi Ekle</a>

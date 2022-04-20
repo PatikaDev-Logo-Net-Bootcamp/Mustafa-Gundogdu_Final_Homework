@@ -29,6 +29,9 @@ namespace Apartment.App.Web.Controllers
         }
         public IActionResult Index()
         {
+            var blocksassd = blockService.GetAll();
+            var floosrse = floorService.GetAll();
+            var housings = housingService.GetAllActiveHousings();
             var model = new BlockViewModel();
 
             var blocks = blockService.GetAll();

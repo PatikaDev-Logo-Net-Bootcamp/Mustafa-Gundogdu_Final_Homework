@@ -256,7 +256,6 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastSpendDate")
-                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("LastUpdatedAt")

@@ -34,6 +34,12 @@ namespace Apartment.App.Business.Concrete
         {
             return repository.Get().Where(h => h.Id == housingId).First();
         }
+
+        public Housing GetHousingByUserId(string userId)
+        {
+            return repository.Get().Where(h => h.User.Id == userId).First();
+        }
+
         public List<Housing> GetHousingByBlockId(int blockId)
         {
             return repository.Get().Where(h => h.Floor.Block.Id == blockId).ToList();
@@ -42,6 +48,22 @@ namespace Apartment.App.Business.Concrete
         public List<Housing> GetHousingsByUserId(string userId)
         {
             return repository.Get().Where(h => h.User.Id == userId).ToList();
+        }
+
+        public string GetHousingAddressByHousingId(int housingId)
+        {
+            var housing = repository.Get().Where(h => h.Id == housingId).First();
+            return  " BLOK "+housing.Floor.Block.Id+" KAT "+housing.Floor.FloorNumber+" NO "+housing.ApartmentNumber;
+        }
+
+        public string GetUserIdByHousingId(int housingId)
+        {
+            return repository.Get().Where(h => h.Id == housingId).First().User.Id;
+        }
+
+        public string GetUserTrIdentityByHousingId(int housingId)
+        {
+            return repository.Get().Where(h => h.Id == housingId).First().User.TrIdentityNumber;
         }
 
         public int GetHousingCountByFloorId(int floorId)

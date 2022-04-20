@@ -19,7 +19,7 @@ namespace Apartment.App.Business.Concrete
         }
         public List<Floor> GetAll()
         {
-          return  repository.Get().ToList();
+            return  repository.Get().ToList();
         }
 
         public List<Floor> GetAllByBlockId(int blockId)
@@ -30,6 +30,11 @@ namespace Apartment.App.Business.Concrete
         public Floor GetById(int id)
         {
             return repository.Get().Where(f=>f.Id==id).First();
+        }
+
+        public int GetBlockIdByFloorId(int id)
+        {
+            return repository.Get().Where(x=>x.Block.Id==id).First().Block.Id;
         }
 
         public void Add(Floor entity)
