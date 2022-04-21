@@ -1,5 +1,5 @@
 ﻿@model Apartment.App.Web.Models.UserViewModels.UserAddViewModel
-{
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -65,7 +65,7 @@
         <span asp-validation-for="User.CarPlateNumber" class="text-danger"></span>
     </div>
 
-    <input type="submit" value="submit" />
+    <input class="btn btn-success" type="submit" value="KAYDET" />
   
 </form>
 

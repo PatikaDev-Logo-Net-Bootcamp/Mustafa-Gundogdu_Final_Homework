@@ -8,7 +8,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Fatura Tipi Ekleme Penceresi</h1>
+<h1>Fatura Tipi Yönetim Penceresi</h1>
 <form id="myForm" method="post">
     <div class="form-group hide">
         <input asp-for="Id" class="form-control" value="@Model.Id" hidden="true" />
@@ -23,7 +23,7 @@
         <input asp-for="Unit" class="form-control" value="@Model.Unit"/>
         <span asp-validation-for="Unit" class="text-danger"></span>
     </div>
-    <input type="submit" value="submit"/>
+    <input type="submit"  class="btn-inf btn-success"value="EKLE/GÜNCELLE"/>
 </form>
 
 

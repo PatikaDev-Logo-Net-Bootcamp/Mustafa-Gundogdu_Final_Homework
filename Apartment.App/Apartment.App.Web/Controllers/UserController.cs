@@ -164,7 +164,7 @@ namespace Apartment.App.Web.Controllers
         {
             var user = userManager.Users.Where(u => u.TrIdentityNumber == TrIdentityNumber).First();
             var roles = userManager.GetRolesAsync(user).Result;
-            if (roles.Contains("admin"))
+            if (roles.Contains("Admin"))
             {
                 return true;
             }

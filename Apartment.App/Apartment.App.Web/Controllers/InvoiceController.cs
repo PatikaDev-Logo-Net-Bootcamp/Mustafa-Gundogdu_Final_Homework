@@ -131,6 +131,7 @@ namespace Apartment.App.Web.Controllers
         [HttpPost]
         public IActionResult Add(InvoiceAddModel model)
         {
+            var invoiceTypes = invoiceTypeService.getAllInvoiceTypes();
             if (ModelState.IsValid)
             {
                 invoiceService.Add(new Invoice

@@ -26,7 +26,7 @@ namespace Apartment.App.Web.PaymentApiService
 
         public static PaymentModel GetPayment(string id)
         {
-            var url1 = url+ id;
+            var url1 = url+"/"+ id;
             using var client = new HttpClient();
             var response = client.GetAsync(url1).Result;
             string result = response.Content.ReadAsStringAsync().Result;

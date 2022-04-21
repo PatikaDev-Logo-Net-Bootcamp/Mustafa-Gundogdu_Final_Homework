@@ -92,3 +92,86 @@ Mongo Db Yükledikten sonra bknz: https://www.mongodb.com/try/download/community
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/url.png )
 *Resimdeki adımları izleyerek eğer sizinki farklı ise url inizi buraya giriyorsunuz.
 
+*Artk başlamaya hazırsınız
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/seed1.png )
+*Sistem kendiliğinden bir admin atamaktadır.
+Admin Tc numarası :12345678900
+Admin Şifre : Admin123.
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/seed2.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m1.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m2.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m3.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m4.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m5.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m6.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m7.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m8.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m9.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m10.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m11.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m12.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m13.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m14.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m17.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m18.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m19.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m20.png )
+*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+*2 Blok ve Her Bloğa Katlar eklemekte

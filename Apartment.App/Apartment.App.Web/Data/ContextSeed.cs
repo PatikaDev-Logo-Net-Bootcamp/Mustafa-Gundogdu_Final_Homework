@@ -13,8 +13,7 @@ namespace Apartment.App.Web.Data
     {
         public static async Task SeedRoleAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Roles.User.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));  await roleManager.CreateAsync(new IdentityRole(Roles.User.ToString()));
         }
         public static async Task SeedSuperAdminAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -51,13 +50,11 @@ namespace Apartment.App.Web.Data
             };
             foreach (var type in types)
             {
-                if (!invoiceTypeService.InvoiceTypeIsThere(type.TypeName))
-                {
+                if (!invoiceTypeService.InvoiceTypeIsThere(type.TypeName)) {
                     invoiceTypeService.Add(type.TypeName,type.TypeUnit);
                 }
             }   
         }
-
         public static void SeedAddBlocks(IBlockService blockService)
         {
             var blocks = new List<Block>
@@ -71,7 +68,6 @@ namespace Apartment.App.Web.Data
                 {
                     blockService.Add(block);
                 }
-               
             }
         }
 
