@@ -8,6 +8,7 @@ namespace Apartment.App.Web.PaymentApiService
 {
     public static class PaymentService
     {
+        private const string url = "https://localhost:44310/api/Payment";
         public static string Pay(PaymentModel model)
         {
             var json = JsonSerializer.Serialize(model);
@@ -25,9 +26,9 @@ namespace Apartment.App.Web.PaymentApiService
 
         public static PaymentModel GetPayment(string id)
         {
-            var url = "https://localhost:44310/api/Payment/" + id;
+            var url1 = url+ id;
             using var client = new HttpClient();
-            var response = client.GetAsync(url).Result;
+            var response = client.GetAsync(url1).Result;
             string result = response.Content.ReadAsStringAsync().Result;
             if (response.StatusCode == HttpStatusCode.OK)
             {

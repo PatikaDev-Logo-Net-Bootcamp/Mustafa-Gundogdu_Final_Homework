@@ -83,3 +83,12 @@ Mongo Db Yükledikten sonra bknz: https://www.mongodb.com/try/download/community
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/paymentservice-update.png )
 *Resimdeki adımları izleyerek mongodb konfigürasyonlarını API mize ekliyoruz. Veritabanı oluştururken kullandığımız veritabanı ve collectionName i doğru yazdığımızdan emin olmalıyız
 
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/multiple-start.png )
+*Resimdeki adımları izleyerek WEB uygulamamız ve API uygulamamızın birlikte çalışmasını Sağlıyoruz.
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/swagger-port.png )
+*Resimdeki adımları izleyerek swagger portunu kontrol ediyoruz buradaki url bilgilerini 
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/url.png )
+*Resimdeki adımları izleyerek eğer sizinki farklı ise url inizi buraya giriyorsunuz.
+
