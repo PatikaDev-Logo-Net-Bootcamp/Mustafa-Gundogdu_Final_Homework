@@ -39,23 +39,24 @@ Kullanıcı bilgilerinde
 * Araç bilgisi(varsa plaka no)
 
 Sistem kullanılmaya başladığında ilk olarak,
-1.Yönetici daire bilgilerini girer.
-2.Kullanıcı bilgilerini girer.Giriş yapması için otomatik olarak bir şifre
-oluşturulur. 3.Kullanıcıları dairelere atar
-4.Ay bazlı olarak aidat bilgilerini girer.
-5.Ay bazlı olarak fatura bilgilerini girer
+* 1.Yönetici daire bilgilerini girer.
+* 2.Kullanıcı bilgilerini girer.Giriş yapması için otomatik olarak bir şifre
+oluşturulur. 
+* 3.Kullanıcıları dairelere atar
+* 4.Ay bazlı olarak aidat bilgilerini girer.
+* 5.Ay bazlı olarak fatura bilgilerini girer
 Arayüz dışında kullanıcıların kredi kartı ile ödeme yapabilmesi için ayrı bir servis
 yazılacaktır.
 Bu serviste sistemde ki her bir kullanıcı için banka bilgileri (bakiye, kredi kartı no
 vb.) kontrol edilerek ödeme yapılması sağlanır.
 Ödeme sadece kredi kartı ile yapılabilir.
 Projede kullanılacaklar:
-1.Web projesi backend için .Net Core, frontend için
+* 1.Web projesi backend için .Net Core, frontend için
 Razorkullanılmalı.
-2.Sistemin yönetimi/database için MS SQL Server kullanılmalı.
-3.Kredi kartı servisi için. Veriler mongodb de tutulmalı. Servis .Net WebApi olarak
+*  2.Sistemin yönetimi/database için MS SQL Server kullanılmalı.
+* 3.Kredi kartı servisi için. Veriler mongodb de tutulmalı. Servis .Net WebApi olarak
 yazılacaktır.
-4.Mümkün olduğu kadar derslerde işlenen konular projeye entegre edilmelidir.
+* 4.Mümkün olduğu kadar derslerde işlenen konular projeye entegre edilmelidir.
  
 
 # Projeyi Bilgisayarınızda kurmak için adımları izleyin
@@ -63,115 +64,111 @@ yazılacaktır.
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/solution_tanitimi.png )
 
-*Öncelikle veritabanlarını kurmamız gerekiyor
+* Öncelikle veritabanlarını kurmamız gerekiyor
 Apartment.App.Web projesinde appsettings.json dosyasına gidiyoruz ve Connectionstring->DefaultConnection içerisindeki connection String i kendi bilgisayarınıza göre ayarlamanız gerekliyor.
 "Server= YOUR_SERVER"
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/update-database.png )
-*Package Manager Console içerisinde Resimdeki gibi default projeyi seçip UPDATE-DATABASE komutunu çalıştırıyoruz.
+* Package Manager Console içerisinde Resimdeki gibi default projeyi seçip UPDATE-DATABASE komutunu çalıştırıyoruz.
 
-*Web Projemiz hazır şimdi API'yi oluşturalım
+* Web Projemiz hazır şimdi API'yi oluşturalım
 Mongo Db Yükledikten sonra bknz: https://www.mongodb.com/try/download/community üzerinden indirip kurduktan sonra 
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/mongo-create-db.png )
-*Resimdeki adımları izleyerek veritabanın kuruyoruz.
+* Resimdeki adımları izleyerek veritabanın kuruyoruz.
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/mongo-connectionstring.png )
-*Resimdeki adımları izleyerek mongo için kullanacağımız bağlantıyı kopyalıyoruz bağlana tıklayıp kapatıyoruz.
+* Resimdeki adımları izleyerek mongo için kullanacağımız bağlantıyı kopyalıyoruz bağlana tıklayıp kapatıyoruz.
 
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/paymentservice-update.png )
-*Resimdeki adımları izleyerek mongodb konfigürasyonlarını API mize ekliyoruz. Veritabanı oluştururken kullandığımız veritabanı ve collectionName i doğru yazdığımızdan emin olmalıyız
+* Resimdeki adımları izleyerek mongodb konfigürasyonlarını API mize ekliyoruz. Veritabanı oluştururken kullandığımız veritabanı ve collectionName i doğru yazdığımızdan emin olmalıyız
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/multiple-start.png )
-*Resimdeki adımları izleyerek WEB uygulamamız ve API uygulamamızın birlikte çalışmasını Sağlıyoruz.
+* Resimdeki adımları izleyerek WEB uygulamamız ve API uygulamamızın birlikte çalışmasını Sağlıyoruz.
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/swagger-port.png )
-*Resimdeki adımları izleyerek swagger portunu kontrol ediyoruz buradaki url bilgilerini 
+* Resimdeki adımları izleyerek swagger portunu kontrol ediyoruz buradaki url bilgilerini 
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/url.png )
-*Resimdeki adımları izleyerek eğer sizinki farklı ise url inizi buraya giriyorsunuz.
+* Resimdeki adımları izleyerek eğer sizinki farklı ise url inizi buraya giriyorsunuz.
 
-*Artk başlamaya hazırsınız
+* Artk başlamaya hazırsınız
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/seed1.png )
-*Sistem kendiliğinden bir admin atamaktadır.
-Admin Tc numarası :12345678900
-Admin Şifre : Admin123.
+
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/seed2.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+
+* Sistem kendiliğinden bir admin atamaktadır.
+
+* Admin Tc numarası :12345678900
+* Admin Şifre : Admin123.
+* Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
+* 2 Blok ve Her Bloğa Katlar eklemektedir
+* Kullanıcı kaydı yapılınca şifresi otomatik olarak Sifre123. atanıyor login sayfasında bilgilendirme yapıldı kullanım için
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m1.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
-
+* Anasayfada sadece giriş yapan kullanıcılar ilgili sayfaları görecek şekilde düzenlendi
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m2.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+*  Giriş için TC kimlik numarası ve Şifre gerekli kılındı
+*  Üyeler için Default şifre : Sifre123. 
+* Admin için şifre Admin123. 
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m3.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Giriş işlemi için validasyonlar tanımlandı 
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m4.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Admin işlemleri için Navigation Barda menüler tanımlandı
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m5.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Kullanıcıların listelenip yönetileceği sayfa admin buradan kullanıcı ekleyebilir listeleyebilir güncelleyebilir
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m6.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m7.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m8.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
-
+* Fatura tipi otomatik olarak ekleniyor Web projesi altında Data Klasörü içinde ContextSeed kısmında tanımlandı. Admin isterse yeni bir 
+tip oluşturabilir güncelleyebilir listeleyebilir
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m9.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Yönetilen sitedeki BLOK lar; o Bloklardaki KAT lar ve Her kattaki daire miktarı bu sayfada tanımlandı listelendi.
+* Admin blok ekleyebilir 
+* Admin bloğa kat ekleyebilir 
+* Eğer blokta kalan yoksa bloğu silebilir
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m10.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Admin kata Daire ekleyebilir
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m11.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Adres bilgileri otomatik geliyor değiştirilemez şekilde. 
+Sadece büyüklük boş olma durumu ev sahibi durumu ve varsa kiracının Kimlik numarasını ekleyerek daire ekleyebilir
+Kullanıcı bilgileri olmadan boş olarak da daire ekleyebilir
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m12.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Dairelerin boş veya dolu olması listeleniyor
+
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m13.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* SADECE DOLU EVLERE FATURA KESİLEBİLİR 
+* Fatura tipleri seçilebilir
+* Kullanım miktarı, birim fiyatı ve kullanım yapılan gün seçilerek Toplam tutar otomatik oluşur
+
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m14.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
-
+* Kesilen faturalar listelenir Detaylı bilgi tablodan okunabilinir
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m17.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Fatura ödeme ekranında kart bilgileri girilerek ödeme işlemi tamamlanır verilerin doğruluğu kontrol edilir.
+* Kredi kartının geçerli bir limiti olunmasına bakılmaz geçerli birimler girilirse ödenmiş sayılır 
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m18.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Fatura ödenmişse eğer Ödeme makbuzu görüntülenebilri
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m19.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* MongoDb de yaptığımız ödemenin kaydı görünmekte
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m20.png )
-*Default olarak bir admin, Fatura Tipleri (Aidat,Elektrik,Su,Doğalgaz)
-*2 Blok ve Her Bloğa Katlar eklemekte
+* Mongo Db den ödeme bilgilerini çekebiliriz
