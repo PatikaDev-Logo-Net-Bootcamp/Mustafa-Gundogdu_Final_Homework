@@ -67,7 +67,8 @@ yazılacaktır.
 *  Foreing key oluşturuldu. 
 *  Payment Api içerisinde ExceptionMiddleware Kullanıldı
  * Automapper kullanımı yapıldı
-
+* Kullanıcılara arka planda otomatik mail atan bir BACKGROUND SERVİS implemente edildi 
+* Admin istediğinde faturası ödenmemiş kullanıcılara mail atıyor sistem
 
 # Projeyi Bilgisayarınızda kurmak için adımları izleyin
 ## 
