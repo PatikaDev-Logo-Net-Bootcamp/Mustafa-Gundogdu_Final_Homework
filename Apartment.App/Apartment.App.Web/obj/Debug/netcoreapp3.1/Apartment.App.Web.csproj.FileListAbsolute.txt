@@ -444,3 +444,6 @@ C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartm
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\bin\Debug\netcoreapp3.1\Flurl.dll
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\bin\Debug\netcoreapp3.1\RestSharp.dll
 C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\mac\Desktop\vs2022\Mustafa-Gundogdu_Final_Homework\Apartment.App\Apartment.App.Web\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll

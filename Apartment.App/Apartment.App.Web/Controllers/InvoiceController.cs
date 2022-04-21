@@ -9,10 +9,12 @@ using Apartment.App.Business.Concrete;
 using Apartment.App.Business.DTO;
 using Apartment.App.Domain.Entities;
 using Apartment.App.Domain.Entities.IdentityEntities;
+using Apartment.App.Web.Background;
 using Apartment.App.Web.Data;
 using Apartment.App.Web.Enums;
 using Apartment.App.Web.Models;
 using Apartment.App.Web.Models.InvoiceModels;
+using Apartment.App.Web.Models.MailModels;
 using Apartment.App.Web.PaymentApiService;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -36,9 +38,10 @@ namespace Apartment.App.Web.Controllers
         private readonly IinvoiceTypeService invoiceTypeService;
         private readonly IFloorService floorService;
         private readonly IBlockService blockService;
+        private readonly IBackgroundQueue<Mail> queue;
         private readonly IMapper mapper;
         private User currentUser = null;
-        public InvoiceController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IinvoiceService invoiceService, IHousingService housingService, IinvoiceTypeService invoiceTypeService, IFloorService floorService, IBlockService blockService, IMapper mapper)
+        public InvoiceController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IinvoiceService invoiceService, IHousingService housingService, IinvoiceTypeService invoiceTypeService, IFloorService floorService, IBlockService blockService, IBackgroundQueue<Mail> queue, IMapper mapper)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
@@ -48,6 +51,7 @@ namespace Apartment.App.Web.Controllers
             this.invoiceTypeService = invoiceTypeService;
             this.floorService = floorService;
             this.blockService = blockService;
+            this.queue = queue;
             this.mapper = mapper;
             currentUser = userManager.FindByNameAsync(signInManager.Context.User.Identity.Name).Result;
         }
@@ -204,7 +208,7 @@ namespace Apartment.App.Web.Controllers
                 cardNumber = model.CreditCardNumber.ToString(),
                 cardOwnerName = model.CreditCardOwnerName.ToString(),
                 cardSecurityNumber = model.CreditCardSecurtiyNumber.ToString(),
-                cardLastUsableDate = model.CreditCardLastUseableDateMonth.ToString() + "/" +  model.CreditCardLastUseableDateYear.ToString(),
+                cardLastUsableDate = model.CreditCardLastUseableDateMonth.ToString() + "/" + model.CreditCardLastUseableDateYear.ToString(),
                 invoiceOwnerTrIdentityNumber = model.InvoiceOwnerTcIdentityNumber.ToString(),
             };
             var result = PaymentService.Pay(invoiceRecord);
@@ -238,7 +242,36 @@ namespace Apartment.App.Web.Controllers
         //}
         #endregion
 
+        #region Mail send operation
 
+        public IActionResult SendAllInvoicesToOwners()
+        {
+            var users = userManager.Users.ToList();
+            var housings = housingService.GetAllHousing();
+            var invoiceTypes = invoiceTypeService.getAllInvoiceTypes();
+
+            var unPayedInvoices = invoiceService.GetAllInvocies().Where(x => x.IsSpended == false).ToList();
+            try
+            {
+                foreach (var invoice in unPayedInvoices)
+                {
+                    var mail = new Mail();
+                    mail.To = users.Where(x => x.TrIdentityNumber == invoice.user.TrIdentityNumber).First().Email;
+                    mail.Body = invoice.InvoiceType.TypeName + "  Faturanızın ödemeniz gerekmektedir. Ödemenizi yapmak için aşağıdaki linke tıklayınız. " + "http://localhost:5000/Invoice/Payment/" + invoice.Id;
+                    mail.Subject = "Fatura Ödeme";
+
+                    queue.Enqueue(mail);
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+
+        }
+
+        #endregion
 
         #region Fatura Ödeme bilgileri gösterme  //YAPILMADI
 
@@ -266,7 +299,7 @@ namespace Apartment.App.Web.Controllers
             }
             return Roles.User;
         }
- 
+
         #endregion
     }
 }

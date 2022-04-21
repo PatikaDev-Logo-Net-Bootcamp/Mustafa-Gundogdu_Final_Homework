@@ -18,6 +18,9 @@ using Apartment.App.DataAccess.EntityFramework;
 using Apartment.App.DataAccessEntityFramework.Repository.Abstract;
 using Apartment.App.DataAccessEntityFramework.Repository.Concrete;
 using Apartment.App.Domain.Entities.IdentityEntities;
+using Apartment.App.Web.Background;
+using Apartment.App.Web.Models.MailModels;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Apartment.App.Web
 {
@@ -36,7 +39,8 @@ namespace Apartment.App.Web
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            
+            services.AddSingleton<IMailSendService, MailSendService>();
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultUI()
@@ -46,7 +50,11 @@ namespace Apartment.App.Web
             
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            
+
+
+            services.AddHostedService<BackgroundWorker>();
+            services.AddSingleton<IBackgroundQueue<Mail>, BackgroundQueue<Mail>>();
+            services.AddScoped<IMailSendService, MailSendService>();
             services.AddScoped<IHousingService, HousingService>();
             services.AddScoped<IinvoiceService, InvoiceService>();
             services.AddScoped<IinvoiceTypeService, InvoiceTypeService>();

@@ -13,7 +13,7 @@
  
     @if (Model.isUserAdmin)
     {
-        <a class="btn btn-info" href="@Url.Action("Add", "Invoice")">Yeni Fatura  Ekle</a>
+        <a class="btn btn-info" href="@Url.Action("SendAllInvoicesToOwners", "Invoice")">Ödenmemiş Faturalar için mail gönder</a>
     }
 </div>
 <table class="table table-striped">

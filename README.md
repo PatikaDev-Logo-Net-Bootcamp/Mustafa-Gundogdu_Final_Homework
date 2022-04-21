@@ -12,16 +12,16 @@ elektrik, su ve doğalgaz faturalarının yönetimini bir sistem üzerinden yapa
 * Daire başına ödenmesi gereken aidat ve fatura bilgilerini girer(Aylık olarak). Toplu veya
 tek tek atama yapılabilir.
 * Gelen ödeme bilgilerini görür.
-* Gelen mesajları görür.
-* Mesajların okunmuş/okunmamış/yeni mesaj olduğu anlaşılmalı.
+* ~~Gelen mesajları görür.~~
+* ~~Mesajların okunmuş/okunmamış/yeni mesaj olduğu anlaşılmalı.~~
 * Aylık olarak borç-alacak listesini görür.
 * Kişileri listeler, düzenler, siler.
 * Daire/konut bilgilerini listeler, düzenler siler.
 2-Kullanıcı
 * Kendisine atanan fatura ve aidat bilgilerini görür.
 * Sadece kredi kartı ile ödeme yapabilir.
-* Yöneticiye mesaj gönderebilir.
-* Mesajların okunmuş/okunmamış/yeni mesaj olduğu anlaşılmalı.
+* ~~Yöneticiye mesaj gönderebilir.~~
+* ~~Mesajların okunmuş/okunmamış/yeni mesaj olduğu anlaşılmalı.~~
 * Yaptığı ödemelerini görür.
 Daire/Konut bilgilerinde:
 * Hangi blokda
@@ -58,6 +58,16 @@ Razorkullanılmalı.
 yazılacaktır.
 * 4.Mümkün olduğu kadar derslerde işlenen konular projeye entegre edilmelidir.
  
+ * Ayrıca Kullanılan özellikler ve proje anlatımı
+ * .net core 3.1 ve Entity Framework kullanarak n katmanlı mimari tasarımı ile proje geliştirildi.
+*  Authorize işlemleri için Microsofr Identity implemente edildi.
+*  Veritabanındaki identity tabloları güncellendi Configürasyonları yapıldı
+*  Dependency Injection, IOC desenleri kullanıldı.
+*  Nesne yönelimli programlama ile nesneler arasıdna one-one one-many many-many bağlantıları kuruldu
+*  Foreing key oluşturuldu. 
+*  Payment Api içerisinde ExceptionMiddleware Kullanıldı
+ * Automapper kullanımı yapıldı
+
 
 # Projeyi Bilgisayarınızda kurmak için adımları izleyin
 ## 
@@ -172,3 +182,10 @@ Kullanıcı bilgileri olmadan boş olarak da daire ekleyebilir
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m20.png )
 * Mongo Db den ödeme bilgilerini çekebiliriz
+
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m22.png )
+* Mail Servisi için ayarlamaları yapmalıyız
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/m21.png )
+* Ödenmemiş faturaların kullanıcılarına mail atarak bilgilendirme geçmek için bir kuyruk yapısı oluşturduk
+* Log olarak basıldı
