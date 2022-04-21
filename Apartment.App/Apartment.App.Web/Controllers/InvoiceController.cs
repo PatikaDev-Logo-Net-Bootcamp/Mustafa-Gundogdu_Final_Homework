@@ -9,6 +9,7 @@ using Apartment.App.Business.Concrete;
 using Apartment.App.Business.DTO;
 using Apartment.App.Domain.Entities;
 using Apartment.App.Domain.Entities.IdentityEntities;
+using Apartment.App.Web.Data;
 using Apartment.App.Web.Enums;
 using Apartment.App.Web.Models;
 using Apartment.App.Web.Models.InvoiceModels;
@@ -16,6 +17,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGeneration;
 
 namespace Apartment.App.Web.Controllers
 {
@@ -32,7 +35,7 @@ namespace Apartment.App.Web.Controllers
         private readonly IBlockService blockService;
         private readonly IMapper mapper;
         private User currentUser = null;
-        public InvoiceController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IinvoiceService invoiceService, IHousingService housingService, IinvoiceTypeService invoiceTypeService, IFloorService floorService,IBlockService blockService ,IMapper mapper)
+        public InvoiceController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IinvoiceService invoiceService, IHousingService housingService, IinvoiceTypeService invoiceTypeService, IFloorService floorService, IBlockService blockService, IMapper mapper)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
@@ -68,7 +71,7 @@ namespace Apartment.App.Web.Controllers
                 else
                 {
                     invoices = invoiceService.GetAllUserInvoices(currentUser);
-                    
+
                 }
 
                 foreach (var invoice in invoices)
@@ -101,17 +104,17 @@ namespace Apartment.App.Web.Controllers
         public IActionResult Add(int housingId)  //fatura sadece dolu bir eve kesilebilir.
         {
             var floors = floorService.GetAll();
-            var blocks = blockService.GetAll(); 
+            var blocks = blockService.GetAll();
             var housings = housingService.GetAllHousing().Where(x => x.IsEmpty == false).ToList();
             var users = userManager.Users.ToList();
-            
-            
+
+
             ViewData["InvoiceTypes"] = invoiceTypeService.getAllInvoiceTypes();
-            
+
             var model = new InvoiceAddModel();
-            
+
             model.housingId = housingId;
-            model.InvoiceOwnerTrIdentity = users.Where(x => x.Id == housings.Find(h => h.Id == model.housingId).User.Id).First().TrIdentityNumber ;
+            model.InvoiceOwnerTrIdentity = users.Where(x => x.Id == housings.Find(h => h.Id == model.housingId).User.Id).First().TrIdentityNumber;
             model.housingOwner = users.Where(x => x.TrIdentityNumber == model.InvoiceOwnerTrIdentity).First().FirstName + " " + users.Where(x => x.TrIdentityNumber == model.InvoiceOwnerTrIdentity).First().LastName;
             model.housingAddress = housingService.GetHousingAddressByHousingId(model.housingId);
             model.InvoiceAmountOfUse = "0";
@@ -119,7 +122,7 @@ namespace Apartment.App.Web.Controllers
             model.InvoiceTypeId = -1;
             model.InvoiceUnitPrice = "0";
             model.TotalDay = 0;
-            
+
             return View(model);
         }
         [HttpPost]
@@ -145,28 +148,64 @@ namespace Apartment.App.Web.Controllers
                     LastUpdatedBy = currentUser.Id,
                     LastSpendDate = DateTime.Now.AddDays(model.TotalDay)
                 });
-                return RedirectToAction("Index", "Invoice",0);
+                return RedirectToAction("Index", "Invoice", 0);
             }
             ViewData["InvoiceTypes"] = invoiceTypeService.getAllInvoiceTypes();
             return View();
         }
-        #endregion 
+        #endregion
 
-        #region Ödeme işlemleri // YAPILMADI
 
+        #region Fatura Ödeme işlemleri // YAPILMADI
         [HttpGet]
         public IActionResult Payment(int id)
         {
-            return View();
+            var housings = housingService.GetAllHousing();
+            var invoiceTypes = invoiceTypeService.getAllInvoiceTypes();
+            var floors = floorService.GetAll();
+            var blocks = blockService.GetAll();
+            var users = userManager.Users.ToList();
+            var invoice = invoiceService.GetInvoiceById(id);
+            var model = new InvoicePayViewModel();
+
+            model.InvoiceId = id;
+            model.InvoiceOwnerTcIdentityNumber = invoice.user.TrIdentityNumber;
+            model.CreditCardSecurtiyNumber = "";
+            model.CreditCardLastUseableDateMonth = 0;
+            model.CreditCardLastUseableDateYear = 0;
+            model.CreditCardOwnerName = "";
+            model.CreditCardNumber = "";
+            model.InvoicePrice = invoice.InvoicePrice.ToString();
+            model.InvoiceAddress = housingService.GetHousingAddressByHousingId(invoice.Housing.Id);
+            model.InvoiceOwnerFullName = invoice.user.FirstName + " " + invoice.user.LastName;
+            model.InvoiceDetail = invoice.InvoiceType.TypeName + " : " + invoice.InvoiceAmountOfUse.ToString() + " " + invoice.InvoiceType.TypeUnit.ToString();
+            ViewData["Months"] = Consts.MonthsList;
+            ViewData["Years"] = Consts.YearsList;
+
+            return View(model);
         }
         [HttpPost]
-        public IActionResult Payment(PayViewModel model)
+        public IActionResult Payment(InvoicePayViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                ViewData["Months"] = Consts.MonthsList;
+                ViewData["Years"] = Consts.YearsList;
+                return View(model);
+            }
+
+
+            //ÖDEME İŞLEMLERİ GERÇEKLEŞİR
+
+            
+            var invoice = invoiceService.GetInvoiceById(model.InvoiceId);
+            invoice.IsSpended = true;
+            invoiceService.Update(invoice);
+            return RedirectToAction("Index", "Invoice");
         }
 
         #endregion
-        
+
         #region Fatura güncelleme // YAPILMADI
         [HttpGet]
         public IActionResult Update(int id)
@@ -181,11 +220,7 @@ namespace Apartment.App.Web.Controllers
         //}
         #endregion
 
-        #region Fatura ödeme // YAPILMADI
 
-
-
-        #endregion
 
         #region Fatura Ödeme bilgileri gösterme  //YAPILMADI
 
@@ -196,7 +231,7 @@ namespace Apartment.App.Web.Controllers
         }
 
         #endregion
-    
+
         #region Metotlar
 
         public Roles getCurrentUserRole()
@@ -208,7 +243,7 @@ namespace Apartment.App.Web.Controllers
             }
             return Roles.User;
         }
-        
+ 
         #endregion
     }
 }

@@ -54,13 +54,13 @@
                 }
                 else
                 {
-                    <a class="btn btn-success" href="@Url.Action("Payment", "Invoice",new{id=invoice.Id}))">ÖDEME YAP</a>
+                    <a class="btn btn-success" href="@Url.Action("Payment", "Invoice",new{id=invoice.Id})">ÖDEME YAP</a>
                 }
                 
                 
                 @if (Model.isUserAdmin && invoice.IsSpended == false)
                 {
-                    <a class="btn btn-primary" href="@Url.Action("Update", "Invoice",new{id=invoice.Id}))">Güncelle</a>
+                    <a class="btn btn-primary" href="@Url.Action("Update", "Invoice",new{id=invoice.Id})">Güncelle</a>
                 }   
             </td>
             <td>

@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Apartment.App.Web.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class HousingController : Controller
     {
         private readonly UserManager<User> userManager;
@@ -37,12 +37,14 @@ namespace Apartment.App.Web.Controllers
             this.mapper = mapper;
             currentUser = userManager.FindByNameAsync(signInManager.Context.User.Identity.Name).Result;
         }
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Index()
         {
             var blocksassd = blockService.GetAll();
             var floosrse = floorService.GetAll();
 
             var model = new HousingViewModel();
+           
             model.isUserAdmin = userManager.GetRolesAsync(currentUser).Result.Contains(Roles.Admin.ToString());
             var housings = new List<Housing>();
             housings = model.isUserAdmin ? housingService.GetAllHousing() : housingService.GetHousingsByUserId(currentUser.Id);

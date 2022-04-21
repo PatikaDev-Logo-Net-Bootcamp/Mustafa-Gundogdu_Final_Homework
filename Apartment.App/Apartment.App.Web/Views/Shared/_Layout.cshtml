@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using Apartment.App.Domain.Entities.IdentityEntities
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,26 +25,29 @@
                     <partial name="Partials/_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
                         </li>
-                       @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                            @if (UserManager.IsInRoleAsync(UserManager.FindByNameAsync(SignInManager.Context.User.Identity.Name).Result, "Admin").Result)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Kullanıcılar</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="InvoiceType" asp-action="Index">Fatura Tipi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Block" asp-action="Index">Bloklar/Kat Yönet</a>
+                                </li>
+                            }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="InvoiceType" asp-action="Index">Fatura Tipi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Kullanıcılar</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Housing" asp-action="Index">Daireler</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Invoice" asp-action="Index">Faturalar</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Block" asp-action="Index">Bloklar/Kat Yönet</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Housing" asp-action="Index">Daireler</a>
-                        </li>
+                    }
                     </ul>
                 </div>
             </div>
