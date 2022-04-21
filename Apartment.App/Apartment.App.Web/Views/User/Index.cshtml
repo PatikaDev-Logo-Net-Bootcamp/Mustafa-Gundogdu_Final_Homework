@@ -6,11 +6,11 @@
  @inject UserManager<User> UserManager
  @{
      Layout = "~/Views/Shared/_Layout.cshtml";
- }
- <h1>Mevcut Kullanıcılar  </h1>
- 
- <a class="btn btn-primary" href="@Url.Action("Add", "User")">Yeni Kullanıcı Ekle</a>
-
+ }  <div class="d-flex justify-content-between">
+     <h3>Mevcut Kullanıcılar  </h3>
+     <a class="btn btn-success" href="@Url.Action("Add", "User")">Yeni Kullanıcı Ekle</a>
+ </div>
+ <br/>
  <table class="table table-striped">
      <thead>
      <tr>

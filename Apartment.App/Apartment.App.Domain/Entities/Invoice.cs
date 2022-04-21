@@ -19,6 +19,7 @@ namespace Apartment.App.Domain.Entities
         public double InvoiceAmountOfUse { get; set; }
         public double InvoiceUnitPrice { get; set; }
         public double InvoicePrice { get; set; }
+        public string InvoicePaymentRecordId { get; set; } 
 
     }
 }

@@ -7,14 +7,15 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Fatura Yönetim Penceresi</h1>
  
-@if (Model.isUserAdmin)
-{
-    <a class="btn btn-info" href="@Url.Action("Add", "Invoice")">Yeni Fatura  Ekle</a>
-}
-
-
+<div class="d-flex justify-content-between">
+    <h1>Fatura Yönetim Penceresi</h1>
+ 
+    @if (Model.isUserAdmin)
+    {
+        <a class="btn btn-info" href="@Url.Action("Add", "Invoice")">Yeni Fatura  Ekle</a>
+    }
+</div>
 <table class="table table-striped">
     <thead>
     <tr>

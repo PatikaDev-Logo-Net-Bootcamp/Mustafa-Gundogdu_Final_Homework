@@ -13,12 +13,15 @@ using Apartment.App.Web.Data;
 using Apartment.App.Web.Enums;
 using Apartment.App.Web.Models;
 using Apartment.App.Web.Models.InvoiceModels;
+using Apartment.App.Web.PaymentApiService;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGeneration;
+using Flurl;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Apartment.App.Web.Controllers
 {
@@ -82,7 +85,7 @@ namespace Apartment.App.Web.Controllers
                         housingId = invoice.Housing.Id,
                         InvoiceOwnerTrIdentity = invoice.user.TrIdentityNumber,
                         InvoiceOwnerName = invoice.user.FirstName + " " + invoice.user.LastName,
-                        housingAdress = invoice.Housing.Floor.Block.BlockNumber + " " + invoice.Housing.Floor.FloorNumber + " " + invoice.Housing.ApartmentNumber,
+                        housingAdress = " Blok:" + invoice.Housing.Floor.Block.BlockNumber + " Kat:" + invoice.Housing.Floor.FloorNumber + " No:" + invoice.Housing.ApartmentNumber,
                         invoiceType = new InvoiceTypeDto { Id = invoice.InvoiceType.Id, Name = invoice.InvoiceType.TypeName, Unit = invoice.InvoiceType.TypeUnit },
                         IsSpended = invoice.IsSpended,
                         TotalDay = invoice.TotalDay,
@@ -193,13 +196,27 @@ namespace Apartment.App.Web.Controllers
                 ViewData["Years"] = Consts.YearsList;
                 return View(model);
             }
-
-
-            //ÖDEME İŞLEMLERİ GERÇEKLEŞİR
-
-            
+            var invoiceRecord = new PaymentModel
+            {
+                invoicePrice = model.InvoicePrice.ToString(),
+                invoiceId = model.InvoiceId.ToString(),
+                cardNumber = model.CreditCardNumber.ToString(),
+                cardOwnerName = model.CreditCardOwnerName.ToString(),
+                cardSecurityNumber = model.CreditCardSecurtiyNumber.ToString(),
+                cardLastUsableDate = model.CreditCardLastUseableDateMonth.ToString() + "/" +  model.CreditCardLastUseableDateYear.ToString(),
+                invoiceOwnerTrIdentityNumber = model.InvoiceOwnerTcIdentityNumber.ToString(),
+            };
+            var result = PaymentService.Pay(invoiceRecord);
+            if (result == "-1")
+            {
+                ViewData["Months"] = Consts.MonthsList;
+                ViewData["Years"] = Consts.YearsList;
+                ModelState.AddModelError("CreditCardNumber", "Kart numarası hatalı");
+                return View(model);
+            }
             var invoice = invoiceService.GetInvoiceById(model.InvoiceId);
             invoice.IsSpended = true;
+            invoice.InvoicePaymentRecordId = result;
             invoiceService.Update(invoice);
             return RedirectToAction("Index", "Invoice");
         }
@@ -227,9 +244,14 @@ namespace Apartment.App.Web.Controllers
         [HttpGet]
         public IActionResult PaymentDetail(int id)
         {
-            return View();
+            var invoice = invoiceService.GetInvoiceById(id);
+            var record = PaymentService.GetPayment(invoice.InvoicePaymentRecordId);
+            var model = new PaymentRecordiewModel
+            {
+                record = record,
+            };
+            return View(model);
         }
-
         #endregion
 
         #region Metotlar

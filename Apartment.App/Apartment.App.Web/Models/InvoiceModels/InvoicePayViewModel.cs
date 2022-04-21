@@ -18,7 +18,7 @@ namespace Apartment.App.Web.Models.InvoiceModels
 
         [Display(Name = "Kredi Kartı Ön Yüzündeki Numarayı Giriniz.")]
         [Required(ErrorMessage = "Kredi Kartı Numarasını Giriniz.")]
-        [RegularExpression("^4[0-9]{12}(?:[0-9]{3})?$ ", ErrorMessage = "Hatalı Giriş !! Kredi Kartı Numarasını Doğru Giriniz.")]
+        [RegularExpression("^(\\d{4}-){3}\\d{4}$|^(\\d{4} ){3}\\d{4}$|^\\d{16}$", ErrorMessage = "Hatalı Giriş !! Kredi Kartı Numarasını Doğru Giriniz.")]
         public string CreditCardNumber { get; set; }
         [Display(Name = "Kredi Kartı Üzerinde Yazan İsminiz")]
         [Required(ErrorMessage = "Kredi Kartı Üzerinde Yazan İsminizi Giriniz.")]

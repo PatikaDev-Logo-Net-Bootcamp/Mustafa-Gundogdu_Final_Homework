@@ -240,6 +240,9 @@ namespace Apartment.App.DataAccess.EntityFramework.Migrations
                     b.Property<double>("InvoiceAmountOfUse")
                         .HasColumnType("float");
 
+                    b.Property<string>("InvoicePaymentRecordId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("InvoicePrice")
                         .HasColumnType("float");
 

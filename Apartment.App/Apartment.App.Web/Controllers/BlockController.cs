@@ -94,7 +94,6 @@ namespace Apartment.App.Web.Controllers
                 {
                     housingService.Delete(housing);
                 }
-
                 foreach (var floor in floors)
                 {
                     floorService.Delete(floor);

@@ -37,31 +37,18 @@
         {
             if (i == 0)
             {
-                <div class=" container tab-pane active "   id="@("menu"+@Model.Blocks[i].block.BlockNumber.ToString())">
+                <div class=" container tab-pane active " id="@("menu"+@Model.Blocks[i].block.BlockNumber.ToString())">
                     @for (int j = 0; j < @Model.Blocks[i].floorsInBlokcs.Count; j++)
                     {
                         <div class="p-3 mb-2 bg-secondary text-white">
-                        <br>
-                        <p >KAT : @Model.Blocks[i].floorsInBlokcs[j].FloorNumber  MESKEN SAYISI : @Model.Blocks[i].floorsInBlokcs[j].HousingCount</p>
-                        <a class="btn btn-success" href="@Url.Action("Add", "Housing",new{floorId=@Model.Blocks[i].floorsInBlokcs[i].Id} )">Yeni Daire Ekle</a>
-                        @foreach (var housing in @Model.Blocks[i].floorsInBlokcs[j].Housings)
-                        {
                             <br>
-                            <p>Numara : </p> <b>@housing.ApartmentNumber</b>
-                            if (@housing.IsEmpty)
-                            {
-                                <b>BOŞ</b>
-                            }
-                            else
-                            {
-                                <b>DOLU</b>
-                            }
-                        }
+                            <p>KAT : @Model.Blocks[i].floorsInBlokcs[j].FloorNumber  MESKEN SAYISI : @Model.Blocks[i].floorsInBlokcs[j].HousingCount</p>
+                            <a class="btn btn-success" href="@Url.Action("Add", "Housing",new{floorId=@Model.Blocks[i].floorsInBlokcs[i].Id} )">Yeni Daire Ekle</a>
                         </div>
                     }
                     <br />
                     <a class="btn btn-info" href="@Url.Action("Add", "Floor",new{id=@Model.Blocks[i].block.Id} )">Yeni Kat Ekle</a>
-                    @if (@Model.Blocks[i].blockHasHirer ==false)
+                    @if (@Model.Blocks[i].blockHasHirer == false)
                     {
                         <a class="btn btn-danger" href="@Url.Action("Delete", "Block",new{id=@Model.Blocks[i].block.Id})">Blok Sil</a>
                     }
@@ -69,31 +56,18 @@
             }
             else
             {
-                <div class=" container tab-pane fade"  id="@("menu"+@Model.Blocks[i].block.BlockNumber.ToString())">
+                <div class=" container tab-pane fade" id="@("menu"+@Model.Blocks[i].block.BlockNumber.ToString())">
                     @for (int j = 0; j < @Model.Blocks[i].floorsInBlokcs.Count; j++)
                     {
                         <div class="p-3 mb-2 bg-secondary text-white">
-                        <br>
-                        <p>KAT : @Model.Blocks[i].floorsInBlokcs[j].FloorNumber  MESKEN SAYISI : @Model.Blocks[i].floorsInBlokcs[j].HousingCount</p>
-                        <a class="btn btn-success" href="@Url.Action("Add", "Housing",new{floorId=@Model.Blocks[i].floorsInBlokcs[i].Id} )">Yeni Daire Ekle</a>
-                        @foreach (var housing in @Model.Blocks[i].floorsInBlokcs[j].Housings)
-                        {
                             <br>
-                            <p>Numara : </p> <b>@housing.ApartmentNumber</b>
-                            if (@housing.IsEmpty)
-                            {
-                                <b>BOŞ</b>
-                            }
-                            else
-                            {
-                                <b>DOLU</b>
-                            }
-                        }
+                            <p>KAT : @Model.Blocks[i].floorsInBlokcs[j].FloorNumber  MESKEN SAYISI : @Model.Blocks[i].floorsInBlokcs[j].HousingCount</p>
+                            <a class="btn btn-success" href="@Url.Action("Add", "Housing",new{floorId=@Model.Blocks[i].floorsInBlokcs[i].Id} )">Yeni Daire Ekle</a>
                         </div>
                     }
                     <br />
                     <a class="btn btn-info" href="@Url.Action("Add", "Floor",new{id=@Model.Blocks[i].block.Id} )">Yeni Kat Ekle</a>
-                    @if (@Model.Blocks[i].blockHasHirer ==false)
+                    @if (@Model.Blocks[i].blockHasHirer == false)
                     {
                         <a class="btn btn-danger" href="@Url.Action("Delete", "Block",new{id=@Model.Blocks[i].block.Id} )">Blok Sil</a>
                     }
