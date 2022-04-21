@@ -60,8 +60,26 @@ yazılacaktır.
 
 # Projeyi Bilgisayarınızda kurmak için adımları izleyin
 ## 
-- 
 
 ![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/solution_tanitimi.png )
 
+*Öncelikle veritabanlarını kurmamız gerekiyor
+Apartment.App.Web projesinde appsettings.json dosyasına gidiyoruz ve Connectionstring->DefaultConnection içerisindeki connection String i kendi bilgisayarınıza göre ayarlamanız gerekliyor.
+"Server= YOUR_SERVER"
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/update-database.png )
+*Package Manager Console içerisinde Resimdeki gibi default projeyi seçip UPDATE-DATABASE komutunu çalıştırıyoruz.
+
+*Web Projemiz hazır şimdi API'yi oluşturalım
+Mongo Db Yükledikten sonra bknz: https://www.mongodb.com/try/download/community üzerinden indirip kurduktan sonra 
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/mongo-create-db.png )
+*Resimdeki adımları izleyerek veritabanın kuruyoruz.
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/mongo-connectionstring.png )
+*Resimdeki adımları izleyerek mongo için kullanacağımız bağlantıyı kopyalıyoruz bağlana tıklayıp kapatıyoruz.
+
+
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/paymentservice-update.png )
+*Resimdeki adımları izleyerek mongodb konfigürasyonlarını API mize ekliyoruz. Veritabanı oluştururken kullandığımız veritabanı ve collectionName i doğru yazdığımızdan emin olmalıyız
 

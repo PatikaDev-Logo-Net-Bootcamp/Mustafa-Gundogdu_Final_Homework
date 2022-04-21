@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apartment.App.Business", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apartment.App.Web", "Apartment.App.Web\Apartment.App.Web.csproj", "{B9F523AF-ADAD-43B7-8268-BD8B49BEE833}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apartment.App.Payment", "MongoDB_CRUD\Apartment.App.Payment.csproj", "{837B2F7D-CCDB-4977-9FC6-E3C415E7B1D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apartment.App.Payment", "Apartment.App.Payment\Apartment.App.Payment.csproj", "{07BED1CF-DFD9-4971-BB57-9FBB3EC937AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{B9F523AF-ADAD-43B7-8268-BD8B49BEE833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9F523AF-ADAD-43B7-8268-BD8B49BEE833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9F523AF-ADAD-43B7-8268-BD8B49BEE833}.Release|Any CPU.Build.0 = Release|Any CPU
-		{837B2F7D-CCDB-4977-9FC6-E3C415E7B1D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{837B2F7D-CCDB-4977-9FC6-E3C415E7B1D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{837B2F7D-CCDB-4977-9FC6-E3C415E7B1D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{837B2F7D-CCDB-4977-9FC6-E3C415E7B1D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07BED1CF-DFD9-4971-BB57-9FBB3EC937AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BED1CF-DFD9-4971-BB57-9FBB3EC937AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BED1CF-DFD9-4971-BB57-9FBB3EC937AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BED1CF-DFD9-4971-BB57-9FBB3EC937AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
