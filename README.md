@@ -7,36 +7,36 @@ Açıklama : Bir sitede yöneticisiniz. Sitenizde yer alan dairelerin aidat ve o
 elektrik, su ve doğalgaz faturalarının yönetimini bir sistem üzerinden yapacaksınız.
 İki tip kullanıcınız var:
 1-Admin/Yönetici
-● Daire bilgilerini girebilir.
-● İkamet eden kullanıcı bilgilerini girer.
-● Daire başına ödenmesi gereken aidat ve fatura bilgilerini girer(Aylık olarak). Toplu veya
+* Daire bilgilerini girebilir.
+* İkamet eden kullanıcı bilgilerini girer.
+* Daire başına ödenmesi gereken aidat ve fatura bilgilerini girer(Aylık olarak). Toplu veya
 tek tek atama yapılabilir.
-● Gelen ödeme bilgilerini görür.
-● Gelen mesajları görür.
-● Mesajların okunmuş/okunmamış/yeni mesaj olduğu anlaşılmalı.
-● Aylık olarak borç-alacak listesini görür.
-● Kişileri listeler, düzenler, siler.
-● Daire/konut bilgilerini listeler, düzenler siler.
+* Gelen ödeme bilgilerini görür.
+* Gelen mesajları görür.
+* Mesajların okunmuş/okunmamış/yeni mesaj olduğu anlaşılmalı.
+* Aylık olarak borç-alacak listesini görür.
+* Kişileri listeler, düzenler, siler.
+* Daire/konut bilgilerini listeler, düzenler siler.
 2-Kullanıcı
-● Kendisine atanan fatura ve aidat bilgilerini görür.
-● Sadece kredi kartı ile ödeme yapabilir.
-● Yöneticiye mesaj gönderebilir.
-● Mesajların okunmuş/okunmamış/yeni mesaj olduğu anlaşılmalı.
-● Yaptığı ödemelerini görür.
+* Kendisine atanan fatura ve aidat bilgilerini görür.
+* Sadece kredi kartı ile ödeme yapabilir.
+* Yöneticiye mesaj gönderebilir.
+* Mesajların okunmuş/okunmamış/yeni mesaj olduğu anlaşılmalı.
+* Yaptığı ödemelerini görür.
 Daire/Konut bilgilerinde:
-● Hangi blokda
-● Durumu (Dolu-boş)
-● Tipi (2+1 vb.)
-● Bulunduğu kat
+* Hangi blokda
+* Durumu (Dolu-boş)
+* Tipi (2+1 vb.)
+* Bulunduğu kat
 
-● Daire numarası
-● Daire sahibi veya kiracı
+* Daire numarası
+* Daire sahibi veya kiracı
 Kullanıcı bilgilerinde
-● Ad-soyad
-● TCNo
-● E-Mail
-● Telefon
-● Araç bilgisi(varsa plaka no)
+* Ad-soyad
+* TCNo
+* E-Mail
+* Telefon
+* Araç bilgisi(varsa plaka no)
 
 Sistem kullanılmaya başladığında ilk olarak,
 1.Yönetici daire bilgilerini girer.
@@ -56,12 +56,12 @@ Razorkullanılmalı.
 3.Kredi kartı servisi için. Veriler mongodb de tutulmalı. Servis .Net WebApi olarak
 yazılacaktır.
 4.Mümkün olduğu kadar derslerde işlenen konular projeye entegre edilmelidir.
-
+ 
 
 # Projeyi Bilgisayarınızda kurmak için adımları izleyin
 ## 
 - 
 
-![image]( )
+![image](https://github.com/PatikaDev-Logo-Net-Bootcamp/Mustafa-Gundogdu_Final_Homework/blob/main/images/solution_tanitimi.png )
 
 
